@@ -94,12 +94,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
+    <html
+      lang="pt-BR"
+      className={`${inter.variable} dark`}
+      suppressHydrationWarning
+    >
       <head>
-        {/* Aplica tema e tamanho de fonte salvos antes da pintura (evita flash) */}
+        {/* Modo escuro é o padrão: o <html> já vai com `dark`.
+            Este script só REMOVE o tema escuro se o usuário tiver optado por
+            claro anteriormente — tudo antes da pintura, evitando flash. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('ldm-theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');var s=localStorage.getItem('ldm-font-scale');if(s)document.documentElement.style.setProperty('--font-scale',s);}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('ldm-theme');if(t==='light')document.documentElement.classList.remove('dark');var s=localStorage.getItem('ldm-font-scale');if(s)document.documentElement.style.setProperty('--font-scale',s);}catch(e){}})();`,
           }}
         />
       </head>

@@ -1,17 +1,15 @@
 import Logo from "./Logo";
 import { siteConfig } from "@/lib/config";
-import { InstagramIcon, FacebookIcon, YoutubeIcon } from "./Icons";
+import { InstagramIcon } from "./Icons";
 
 const SOCIAL = [
   { key: "instagram", label: "Instagram", Icon: InstagramIcon },
-  { key: "facebook", label: "Facebook", Icon: FacebookIcon },
-  { key: "youtube", label: "YouTube", Icon: YoutubeIcon },
 ] as const;
 
 export default function Footer() {
   return (
     <footer className="bg-brand-darker text-white/80">
-      <div className="container-page grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="container-page grid gap-10 py-14 md:grid-cols-[1.6fr_1fr]">
         <div>
           <Logo variant="light" />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
@@ -54,21 +52,6 @@ export default function Footer() {
             </li>
           </ul>
         </nav>
-
-        <div>
-          <h3 className="text-sm font-bold uppercase tracking-wider text-white">
-            Realização e parceiros
-          </h3>
-          <ul className="mt-4 space-y-2.5 text-sm">
-            {siteConfig.partners.map((partner) => (
-              <li key={partner.name}>
-                <a href={partner.url} className="hover:text-brand-orange">
-                  {partner.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
 
       <div className="border-t border-white/10">

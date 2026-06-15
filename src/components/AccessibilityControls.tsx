@@ -20,19 +20,17 @@ export default function AccessibilityControls({
   compact?: boolean;
 }) {
   const [scale, setScale] = useState(1);
-  const [dark, setDark] = useState(false);
+  // Modo escuro é o padrão da aplicação; só fica claro se o usuário escolher.
+  const [dark, setDark] = useState(true);
 
-  // Restaura preferências salvas (ou segue a preferência do sistema no 1º acesso)
+  // Restaura preferências salvas
   useEffect(() => {
     const savedScale = Number(localStorage.getItem("ldm-font-scale"));
     if (savedScale) setScale(savedScale);
 
     const savedTheme = localStorage.getItem("ldm-theme");
-    if (savedTheme) {
-      setDark(savedTheme === "dark");
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setDark(true);
-    }
+    // Sem preferência salva → mantém o padrão (escuro)
+    setDark(savedTheme !== "light");
   }, []);
 
   // Aplica e persiste o tamanho da fonte
