@@ -7,6 +7,7 @@ import Gamification from "@/components/Gamification";
 import LocalGuide from "@/components/LocalGuide";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
+import ModalsHost from "@/components/ModalsHost";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <FinalCTA />
       </main>
       <Footer />
+      <ModalsHost />
     </>
   );
 }

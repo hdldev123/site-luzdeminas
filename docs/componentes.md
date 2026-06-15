@@ -31,6 +31,9 @@ está em `src/app/page.tsx`.
 | `SectionHeading.tsx`       | Cabeçalho padrão de seção (eyebrow + título + descrição). |
 | `Placeholder.tsx`          | Placeholder visual de imagem (trocar por `next/image`). |
 | `Icons.tsx`                | Ícones SVG inline. |
+| `Modal.tsx`                | Diálogo modal acessível e reutilizável. Client. |
+| `ModalsHost.tsx`           | Host único de modais (institucional + "em breve"). Client. |
+| `ModalTrigger.tsx`         | Botão que abre um modal (`openModal`). Client. |
 
 ## Tema escuro nos componentes
 

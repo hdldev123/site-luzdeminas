@@ -1,6 +1,7 @@
 import Logo from "./Logo";
 import { siteConfig } from "@/lib/config";
 import { InstagramIcon } from "./Icons";
+import ModalTrigger from "./ModalTrigger";
 
 const SOCIAL = [
   { key: "instagram", label: "Instagram", Icon: InstagramIcon },
@@ -9,7 +10,7 @@ const SOCIAL = [
 export default function Footer() {
   return (
     <footer className="bg-brand-darker text-white/80">
-      <div className="container-page grid gap-10 py-14 md:grid-cols-[1.6fr_1fr]">
+      <div className="container-page grid gap-10 py-14 md:grid-cols-[1.6fr_1fr_1fr]">
         <div>
           <Logo variant="light" />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
@@ -36,22 +37,47 @@ export default function Footer() {
           </h3>
           <ul className="mt-4 space-y-2.5 text-sm">
             <li>
-              <a href={siteConfig.legal.privacy} className="hover:text-brand-orange">
+              <ModalTrigger
+                kind="privacy"
+                className="text-left transition hover:text-brand-orange"
+              >
                 Política de Privacidade
-              </a>
+              </ModalTrigger>
             </li>
             <li>
-              <a href={siteConfig.legal.terms} className="hover:text-brand-orange">
+              <ModalTrigger
+                kind="terms"
+                className="text-left transition hover:text-brand-orange"
+              >
                 Termos de Uso
-              </a>
-            </li>
-            <li>
-              <a href={siteConfig.legal.contact} className="hover:text-brand-orange">
-                Contato
-              </a>
+              </ModalTrigger>
             </li>
           </ul>
         </nav>
+
+        <div>
+          <h3 className="text-sm font-bold uppercase tracking-wider text-white">
+            Contato
+          </h3>
+          <ul className="mt-4 space-y-2.5 text-sm">
+            <li>
+              <a
+                href={`mailto:${siteConfig.contact.email}`}
+                className="transition hover:text-brand-orange"
+              >
+                {siteConfig.contact.email}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`tel:${siteConfig.contact.phoneHref}`}
+                className="transition hover:text-brand-orange"
+              >
+                {siteConfig.contact.phoneDisplay}
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div className="border-t border-white/10">

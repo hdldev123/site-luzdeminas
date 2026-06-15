@@ -8,13 +8,16 @@ Tudo o que muda com frequência está centralizado em **`src/lib/config.ts`**.
 |---------------------------|-----------|
 | `links.appStore`          | Link da App Store (placeholder `<<URL_APP_STORE>>`). |
 | `links.googlePlay`        | Link do Google Play (placeholder `<<URL_GOOGLE_PLAY>>`). |
-| `links.partnerWhatsApp`   | WhatsApp/contato de parcerias. |
+| `links.partnerForm`       | Formulário do botão "Seja um parceiro" (`<<URL_FORMS_PARCEIRO>>`). |
+| `contact.email`           | E-mail exibido no footer (`mailto:`). |
+| `contact.phoneDisplay`    | Telefone para exibição (ex.: `(32) 99999-9999`). |
+| `contact.phoneHref`       | Telefone em E.164 para o link `tel:` (ex.: `+5532999999999`). |
 | `social.instagram`        | Perfil do Instagram (única rede exibida no footer). |
-| `legal.privacy` / `terms` | Política de Privacidade / Termos de Uso. |
-| `legal.contact`           | Contato. |
-| `partners`                | Lista de parceiros (não exibida no footer atual). |
 
 > Itens marcados como `<<...>>` são **placeholders** — troque pelos valores reais.
+>
+> **Termos de Uso** e **Política de Privacidade** são modais; o texto fica em
+> `src/components/ModalsHost.tsx` (template — revisar juridicamente).
 
 ## Imagens
 

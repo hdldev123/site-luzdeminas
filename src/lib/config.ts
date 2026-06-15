@@ -11,31 +11,26 @@ export const siteConfig = {
   links: {
     appStore: "<<URL_APP_STORE>>",
     googlePlay: "<<URL_GOOGLE_PLAY>>",
-    // Contato comercial para parcerias do Guia Local
-    partnerWhatsApp:
-      "https://wa.me/5500000000000?text=Quero%20ser%20parceiro%20do%20Luz%20de%20Minas",
-    contactEmail: "contato@luzdeminas.app",
+    // Formulário de cadastro de parceiros do Guia Local (botão "Seja um parceiro").
+    // Troque pelo link real do formulário (Google Forms, Typeform, etc.).
+    partnerForm: "<<URL_FORMS_PARCEIRO>>",
   },
 
-  // Redes sociais (use "#" ou remova o item para esconder)
+  // Contato exibido no footer (e-mail + telefone)
+  contact: {
+    email: "contato@luzdeminas.app",
+    // Telefone em formato de exibição e em formato E.164 para o link tel:
+    phoneDisplay: "(32) 99999-9999",
+    phoneHref: "+5532999999999",
+  },
+
+  // Redes sociais exibidas no footer (apenas Instagram)
   social: {
     instagram: "<<URL_INSTAGRAM>>",
-    facebook: "<<URL_FACEBOOK>>",
-    youtube: "<<URL_YOUTUBE>>",
   },
 
-  // Links institucionais do rodapé
-  legal: {
-    privacy: "/politica-de-privacidade",
-    terms: "/termos-de-uso",
-    contact: "mailto:contato@luzdeminas.app",
-  },
-
-  // Créditos / parceiros institucionais — ajuste conforme o patrocínio real
-  partners: [
-    { name: "Energisa", url: "<<URL_ENERGISA>>" },
-    { name: "Prefeitura de Cataguases", url: "<<URL_PREFEITURA>>" },
-  ],
+  // Conteúdo institucional aberto em modal (Termos de Uso / Política de Privacidade)
+  // — ver textos em src/components/ModalsHost.tsx.
 };
 
 export type SiteConfig = typeof siteConfig;

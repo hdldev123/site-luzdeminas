@@ -62,7 +62,9 @@ export default function LocalGuide() {
               </p>
             </div>
             <a
-              href={siteConfig.links.partnerWhatsApp}
+              href={siteConfig.links.partnerForm}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-brand-orange px-6 py-3.5 font-bold text-white shadow-soft transition hover:bg-brand-orange-dark"
             >
               Seja um parceiro
