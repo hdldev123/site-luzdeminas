@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-scale: 1; /* controlado pelo widget de acessibilidade */
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Escala de fonte ajustável: 1rem segue a preferência do usuário */
+  font-size: calc(100% * var(--font-scale));
+}
+
+body {
+  @apply bg-surface text-ink antialiased;
+}
+
+/* ---------------------------------------------------------------------------
+   Modo escuro (ativado pelo widget de acessibilidade — classe .dark no <html>)
+   Fundo navy alinhado à marca; ajustes pontuais ficam nas variantes dark: dos
+   componentes.
+--------------------------------------------------------------------------- */
+html.dark body {
+  @apply bg-night text-slate-200;
+}
+
+/* Suaviza a troca de tema */
+html,
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Foco visível e consistente para navegação por teclado */
+:where(a, button, input, [tabindex]):focus-visible {
+  outline: 3px solid #ff6b35;
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* Respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Utilitário de container centralizado */
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  }
+}
+
+/* Estado inicial/animado do componente Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

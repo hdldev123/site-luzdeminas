@@ -1,0 +1,13 @@
+{
+  "name": "Luz de Minas",
+  "short_name": "Luz de Minas",
+  "description": "Turismo histórico e cultural da Zona da Mata mineira — Circuito Luz de Minas.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9FAFB",
+  "theme_color": "#002D72",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
