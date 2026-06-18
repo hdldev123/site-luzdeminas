@@ -8,6 +8,7 @@ import LocalGuide from "@/components/LocalGuide";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import ModalsHost from "@/components/ModalsHost";
+import BackToTop from "@/components/BackToTop";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       </main>
       <Footer />
       <ModalsHost />
+      <BackToTop />
     </>
   );
 }

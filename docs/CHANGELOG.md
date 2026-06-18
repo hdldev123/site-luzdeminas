@@ -2,6 +2,12 @@
 
 Registro de mudanças por commit. As mais recentes no topo.
 
+## Botão flutuante "voltar ao topo"
+
+- Novo `BackToTop.tsx`: botão flutuante discreto (canto inferior direito) que
+  aparece após rolar ~60% da viewport e leva ao topo com rolagem suave
+  (respeita `prefers-reduced-motion`). Acessível e com variantes dark.
+
 ## Logo oficial no header e footer
 
 - **Header** e **footer** passam a exibir a logo oficial `/logo.svg` (via
