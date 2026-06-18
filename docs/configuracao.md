@@ -39,9 +39,11 @@ Para usar uma imagem real:
 |------------|----------------|
 | Hero       | `/inicio.jpeg` |
 | Carrossel  | `/rotas.jpeg`, `/audio.jpeg`, `/qr.jpeg`, `/medalhas.jpeg`, `/guia.jpeg` |
+| Cidades    | `/cataguases.png`, `/leopoldina.jpg`, `/itamarati.png` |
+| Gamificação| `/cataguases.png` (marco ilustrativo) |
 
-**Ainda como placeholder**: fotos das cidades (`Cities.tsx`) e o QR da seção
-Gamificação (`Gamification.tsx`) — basta adicionar o arquivo e passar `src`.
+Todas as imagens da página já estão conectadas. Para trocar qualquer uma, basta
+substituir o arquivo em `public/` (mesmo nome) ou ajustar o `src` no componente.
 
 ## SEO / compartilhamento
 

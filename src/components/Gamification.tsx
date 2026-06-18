@@ -95,9 +95,11 @@ export default function Gamification() {
             <div className="mt-6 flex items-center gap-3 rounded-2xl bg-white/5 p-3">
               <Placeholder
                 label="<<qr-marco>>"
-                alt="QR Code de validação de um marco histórico"
+                src="/cataguases.png"
+                alt="Marco histórico em Cataguases"
                 variant="screenshot"
                 className="h-16 w-16 shrink-0 rounded-xl"
+                sizes="64px"
               />
               <div className="text-sm">
                 <p className="font-semibold">Escaneie para coletar</p>

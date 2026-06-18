@@ -2,6 +2,13 @@
 
 Registro de mudanças por commit. As mais recentes no topo.
 
+## Imagens reais — Cidades e Gamificação
+
+- Cards de **Cidades** agora usam fotos reais: `/cataguases.png`,
+  `/leopoldina.jpg`, `/itamarati.png` (Piacatuba/Itamarati).
+- **Gamificação**: o marco ilustrativo passa a usar `/cataguases.png`.
+- Todas as imagens da página agora estão conectadas (sem placeholders restantes).
+
 ## Imagens reais — Hero e carrossel
 
 - `Placeholder` agora aceita `src` (e `sizes`) e renderiza a imagem real com

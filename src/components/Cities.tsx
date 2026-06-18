@@ -8,18 +8,21 @@ const CITIES = [
   {
     name: "Cataguases",
     placeholder: "<<foto-cataguases>>",
+    src: "/cataguases.png",
     alt: "Arquitetura modernista de Cataguases",
     text: "Berço do modernismo brasileiro: obras de Niemeyer, Portinari, Burle Marx e Paulo Werneck.",
   },
   {
     name: "Leopoldina",
     placeholder: "<<foto-leopoldina>>",
+    src: "/leopoldina.jpg",
     alt: "Centro histórico de Leopoldina",
     text: "Tradição cafeeira, casario histórico e a hospitalidade que define a Zona da Mata.",
   },
   {
     name: "Piacatuba / Itamarati",
     placeholder: "<<foto-piacatuba>>",
+    src: "/itamarati.png",
     alt: "Distrito de Piacatuba e Itamarati",
     text: "Distritos de charme interiorano, memória ferroviária e paisagens que pedem uma boa caminhada.",
   },
@@ -40,8 +43,10 @@ export default function Cities() {
             <article className="group h-full overflow-hidden rounded-2xl bg-white shadow-card dark:bg-night-card dark:ring-1 dark:ring-white/10">
               <Placeholder
                 label={city.placeholder}
+                src={city.src}
                 alt={city.alt}
                 className="aspect-[4/3] transition duration-500 group-hover:scale-[1.03]"
+                sizes="(max-width: 768px) 100vw, 380px"
               />
               <div className="p-6">
                 <h3 className="text-xl font-bold text-ink dark:text-white">
