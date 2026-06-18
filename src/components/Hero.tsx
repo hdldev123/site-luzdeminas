@@ -44,7 +44,6 @@ export default function Hero() {
             {[
               "Grátis para baixar",
               "Funciona em iOS e Android",
-              "Conteúdo em português",
             ].map((item) => (
               <li key={item} className="flex items-center gap-1.5">
                 <CheckIcon className="h-4 w-4 text-brand-orange" />
@@ -64,19 +63,6 @@ export default function Hero() {
                 variant="screenshot"
                 className="aspect-[9/19] rounded-[1.8rem]"
               />
-            </div>
-          </div>
-
-          {/* card flutuante de conquista */}
-          <div className="absolute -left-2 bottom-10 hidden rounded-2xl bg-white p-3 text-ink shadow-soft sm:block">
-            <div className="flex items-center gap-2">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-orange/15 text-brand-orange">
-                <CheckIcon className="h-5 w-5" />
-              </span>
-              <div className="leading-tight">
-                <p className="text-xs font-bold">Marco coletado!</p>
-                <p className="text-[0.7rem] text-ink/60">+1 medalha</p>
-              </div>
             </div>
           </div>
         </div>
