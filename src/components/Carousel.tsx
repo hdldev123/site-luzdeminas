@@ -5,11 +5,11 @@ import Placeholder from "./Placeholder";
 
 /** Telas do app exibidas no carrossel. Troque os placeholders por imagens reais. */
 const SLIDES = [
-  { label: "<<screenshot-rotas>>", caption: "Rotas guiadas no mapa" },
-  { label: "<<screenshot-audioguia>>", caption: "Áudio-guia em cada marco" },
-  { label: "<<screenshot-qrcode>>", caption: "Coleta por QR Code" },
-  { label: "<<screenshot-conquistas>>", caption: "Conquistas e medalhas" },
-  { label: "<<screenshot-guia-local>>", caption: "Guia Local com cupons" },
+  { src: "/rotas.jpeg", label: "<<screenshot-rotas>>", caption: "Rotas guiadas no mapa" },
+  { src: "/audio.jpeg", label: "<<screenshot-audioguia>>", caption: "Áudio-guia em cada marco" },
+  { src: "/qr.jpeg", label: "<<screenshot-qrcode>>", caption: "Coleta por QR Code" },
+  { src: "/medalhas.jpeg", label: "<<screenshot-conquistas>>", caption: "Conquistas e medalhas" },
+  { src: "/guia.jpeg", label: "<<screenshot-guia-local>>", caption: "Guia Local com cupons" },
 ];
 
 const AUTOPLAY_MS = 3500;
@@ -121,9 +121,11 @@ export default function Carousel() {
                 <div className="w-[210px] rounded-[2.2rem] border-[9px] border-black/80 bg-black shadow-2xl sm:w-[235px]">
                   <Placeholder
                     label={slide.label}
+                    src={slide.src}
                     alt={`Tela do app: ${slide.caption}`}
                     variant="screenshot"
                     className="aspect-[9/19] rounded-[1.6rem]"
+                    sizes="235px"
                   />
                 </div>
               </button>

@@ -59,9 +59,11 @@ export default function Hero() {
             <div className="mx-auto w-[260px] rounded-[2.5rem] border-[10px] border-black/80 bg-black shadow-2xl sm:w-[300px]">
               <Placeholder
                 label="<<screenshot-hero>>"
-                alt="Tela do app Luz de Minas mostrando uma rota guiada com marcos históricos"
+                src="/inicio.jpeg"
+                alt="Tela inicial do app Luz de Minas"
                 variant="screenshot"
                 className="aspect-[9/19] rounded-[1.8rem]"
+                sizes="(max-width: 640px) 240px, 300px"
               />
             </div>
           </div>

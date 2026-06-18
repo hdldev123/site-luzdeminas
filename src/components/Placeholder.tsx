@@ -1,25 +1,50 @@
+import Image from "next/image";
 import { MapPinIcon } from "./Icons";
 
 type PlaceholderProps = {
   /** Rótulo do placeholder, ex.: "<<foto-cataguases>>" */
   label: string;
   className?: string;
-  /** descrição que vira o alt da imagem real */
+  /** descrição que vira o alt da imagem */
   alt?: string;
   variant?: "photo" | "screenshot";
+  /**
+   * Caminho da imagem real em /public (ex.: "/rotas.jpeg").
+   * Quando informado, renderiza a imagem (next/image, lazy-load).
+   * Quando ausente, mostra a moldura de placeholder.
+   */
+  src?: string;
+  /** dica de tamanho responsivo para o next/image */
+  sizes?: string;
 };
 
 /**
- * Placeholder de imagem com aparência de moldura.
- * Troque por <Image /> do next/image apontando para /public quando tiver as fotos.
- * O atributo data-alt indica o texto alternativo sugerido para a imagem real.
+ * Exibe uma imagem real (se `src` for informado) ou uma moldura de placeholder.
+ * Mantém os mesmos cantos arredondados / proporção via `className`.
  */
 export default function Placeholder({
   label,
   className = "",
   alt,
   variant = "photo",
+  src,
+  sizes = "(max-width: 768px) 80vw, 320px",
 }: PlaceholderProps) {
+  if (src) {
+    return (
+      <div className={`relative overflow-hidden ${className}`}>
+        <Image
+          src={src}
+          alt={alt ?? label.replace(/<<|>>/g, "")}
+          fill
+          sizes={sizes}
+          loading="lazy"
+          className="object-cover"
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       role="img"

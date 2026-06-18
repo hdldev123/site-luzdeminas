@@ -21,15 +21,27 @@ Tudo o que muda com frequência está centralizado em **`src/lib/config.ts`**.
 
 ## Imagens
 
-Os placeholders visuais usam o componente `Placeholder.tsx` com rótulos `<<...>>`
-(ex.: `<<screenshot-hero>>`, `<<foto-cataguases>>`). Para usar imagens reais:
+O componente `Placeholder.tsx` aceita a prop **`src`**: com `src`, ele renderiza
+a imagem real via `next/image` (lazy-load, `object-cover`); sem `src`, mostra a
+moldura de placeholder com o rótulo `<<...>>`.
+
+Para usar uma imagem real:
 
 1. Coloque o arquivo em `public/` (ex.: `public/cataguases.jpg`).
-2. Substitua `<Placeholder ... />` por `next/image`:
+2. Passe `src` no `Placeholder` correspondente:
    ```tsx
-   import Image from "next/image";
-   <Image src="/cataguases.jpg" alt="..." width={800} height={600} loading="lazy" />
+   <Placeholder src="/cataguases.jpg" alt="..." className="aspect-[4/3]" />
    ```
+
+**Imagens já conectadas** (em `public/`):
+
+| Uso        | Arquivo        |
+|------------|----------------|
+| Hero       | `/inicio.jpeg` |
+| Carrossel  | `/rotas.jpeg`, `/audio.jpeg`, `/qr.jpeg`, `/medalhas.jpeg`, `/guia.jpeg` |
+
+**Ainda como placeholder**: fotos das cidades (`Cities.tsx`) e o QR da seção
+Gamificação (`Gamification.tsx`) — basta adicionar o arquivo e passar `src`.
 
 ## SEO / compartilhamento
 

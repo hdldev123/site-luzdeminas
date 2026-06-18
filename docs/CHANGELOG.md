@@ -2,6 +2,16 @@
 
 Registro de mudanças por commit. As mais recentes no topo.
 
+## Imagens reais — Hero e carrossel
+
+- `Placeholder` agora aceita `src` (e `sizes`) e renderiza a imagem real com
+  `next/image` (lazy-load, `object-cover`); sem `src`, mantém a moldura
+  placeholder.
+- **Hero**: mockup usa `/inicio.jpeg`.
+- **Carrossel**: telas usam `/rotas.jpeg`, `/audio.jpeg`, `/qr.jpeg`,
+  `/medalhas.jpeg`, `/guia.jpeg`.
+- Pendentes (seguem placeholder): fotos das cidades e o QR da seção Gamificação.
+
 ## Ajuste — Carrossel: centralização e controles
 
 - Corrigido o `transform` inline dos slides para incluir a centralização
