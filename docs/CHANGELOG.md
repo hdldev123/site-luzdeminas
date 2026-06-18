@@ -2,6 +2,19 @@
 
 Registro de mudanças por commit. As mais recentes no topo.
 
+## Lote 3 — Popups "em breve" e carrossel de telas do app
+
+- **Popup "em breve"** (`kind="coming-soon"`) nos botões de download/exploração,
+  já que o app ainda não foi lançado:
+  - "Baixar o app" (Header, desktop e mobile);
+  - "Baixe na App Store" / "Google Play" (`StoreButtons`, no Hero e CTA final);
+  - "Explorar no app" (cards de Cidades).
+  `StoreButtons` virou client e ganhou `interactive` (false = ilustrativo).
+- **Carrossel `Carousel.tsx`** na seção "Como funciona": coverflow 3D
+  autorrotativo, com setas, indicadores, navegação por teclado, pausa no
+  hover/foco e respeito a `prefers-reduced-motion`.
+- **Docs** atualizadas (funcionalidades, componentes).
+
 ## Lote 2 — Contato no footer, institucional em modal e formulário de parceiros
 
 - **Infra de modais**: `Modal`, `ModalsHost`, `ModalTrigger` e `lib/modal.ts`

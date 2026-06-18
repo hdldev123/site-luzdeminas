@@ -41,8 +41,8 @@ export default function ModalsHost() {
           Em breve disponível para iOS e Android:
         </p>
         <div className="mt-3">
-          {/* Botões ilustrativos (ainda sem link de loja ativo) */}
-          <StoreButtons variant="dark" />
+          {/* Botões ilustrativos (não reabrem o popup) */}
+          <StoreButtons variant="dark" interactive={false} />
         </div>
       </Modal>
 

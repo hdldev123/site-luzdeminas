@@ -1,9 +1,16 @@
-import { siteConfig } from "@/lib/config";
+"use client";
+
+import { openModal } from "@/lib/modal";
 
 type StoreButtonsProps = {
   /** "light" usa botões claros (bom sobre o azul); "dark" usa botões escuros */
   variant?: "light" | "dark";
   className?: string;
+  /**
+   * Quando true (padrão), os botões abrem o popup "em breve".
+   * Use false para exibir apenas como ilustração (ex.: dentro do próprio modal).
+   */
+  interactive?: boolean;
 };
 
 function AppleGlyph() {
@@ -28,29 +35,40 @@ function PlayGlyph() {
 export default function StoreButtons({
   variant = "dark",
   className = "",
+  interactive = true,
 }: StoreButtonsProps) {
   const styles =
     variant === "light"
       ? "bg-white text-brand-darker hover:bg-white/90"
       : "bg-brand-darker text-white hover:bg-black";
 
+  const base = `flex items-center gap-3 rounded-xl px-5 py-3 font-semibold shadow-soft transition ${styles}`;
+
   return (
     <div className={`flex flex-col gap-3 sm:flex-row ${className}`}>
-      <a
-        href={siteConfig.links.appStore}
-        className={`flex items-center gap-3 rounded-xl px-5 py-3 font-semibold shadow-soft transition ${styles}`}
-        aria-label="Baixar na App Store"
+      <button
+        type="button"
+        onClick={interactive ? () => openModal("coming-soon") : undefined}
+        aria-haspopup={interactive ? "dialog" : undefined}
+        aria-disabled={interactive ? undefined : true}
+        tabIndex={interactive ? 0 : -1}
+        className={`${base} text-left ${interactive ? "" : "cursor-default"}`}
+        aria-label="Baixar na App Store — em breve"
       >
         <AppleGlyph />
         <span className="flex flex-col leading-tight">
           <span className="text-[0.65rem] font-medium opacity-70">Baixe na</span>
           <span className="text-base">App Store</span>
         </span>
-      </a>
-      <a
-        href={siteConfig.links.googlePlay}
-        className={`flex items-center gap-3 rounded-xl px-5 py-3 font-semibold shadow-soft transition ${styles}`}
-        aria-label="Baixar no Google Play"
+      </button>
+      <button
+        type="button"
+        onClick={interactive ? () => openModal("coming-soon") : undefined}
+        aria-haspopup={interactive ? "dialog" : undefined}
+        aria-disabled={interactive ? undefined : true}
+        tabIndex={interactive ? 0 : -1}
+        className={`${base} text-left ${interactive ? "" : "cursor-default"}`}
+        aria-label="Baixar no Google Play — em breve"
       >
         <PlayGlyph />
         <span className="flex flex-col leading-tight">
@@ -59,7 +77,7 @@ export default function StoreButtons({
           </span>
           <span className="text-base">Google Play</span>
         </span>
-      </a>
+      </button>
     </div>
   );
 }

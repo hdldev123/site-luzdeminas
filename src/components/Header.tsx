@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import AccessibilityControls from "./AccessibilityControls";
-import { siteConfig } from "@/lib/config";
+import { openModal } from "@/lib/modal";
 
 const NAV = [
   { href: "#como-funciona", label: "Como funciona" },
@@ -61,12 +61,14 @@ export default function Header() {
           >
             <AccessibilityControls />
           </div>
-          <a
-            href={siteConfig.links.googlePlay}
+          <button
+            type="button"
+            onClick={() => openModal("coming-soon")}
+            aria-haspopup="dialog"
             className="hidden rounded-full bg-brand-orange px-5 py-2.5 text-sm font-bold text-white shadow-soft transition hover:bg-brand-orange-dark sm:inline-block"
           >
             Baixar o app
-          </a>
+          </button>
 
           <button
             type="button"
@@ -109,12 +111,17 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
-            <a
-              href={siteConfig.links.googlePlay}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                openModal("coming-soon");
+              }}
+              aria-haspopup="dialog"
               className="mt-2 rounded-full bg-brand-orange px-5 py-3 text-center font-bold text-white"
             >
               Baixar o app
-            </a>
+            </button>
             <div className="mt-3 text-ink dark:text-slate-200">
               <AccessibilityControls compact />
             </div>

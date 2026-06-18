@@ -1,5 +1,6 @@
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
+import Carousel from "./Carousel";
 import { RouteIcon, MapPinIcon, QrIcon } from "./Icons";
 
 const STEPS = [
@@ -52,6 +53,20 @@ export default function HowItWorks() {
           );
         })}
       </ol>
+
+      {/* Carrossel de telas do app */}
+      <Reveal className="mt-20">
+        <h3 className="text-center text-2xl font-extrabold tracking-tight text-ink dark:text-white sm:text-3xl">
+          Veja o app em ação
+        </h3>
+        <p className="mx-auto mt-3 max-w-xl text-center text-ink/70 dark:text-slate-300">
+          Um passeio pelas telas do Luz de Minas — das rotas guiadas às conquistas
+          que você desbloqueia pelo caminho.
+        </p>
+        <div className="mt-10">
+          <Carousel />
+        </div>
+      </Reveal>
     </section>
   );
 }

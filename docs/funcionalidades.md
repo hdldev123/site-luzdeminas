@@ -40,6 +40,16 @@ No footer, **Termos de Uso** e **Política de Privacidade** abrem modais
 (`kind="terms"` / `kind="privacy"`). O conteúdo é um **template** em PT-BR no
 `ModalsHost.tsx` — revise com apoio jurídico antes de publicar.
 
+### Popup "em breve" (`kind="coming-soon"`)
+Como o app ainda não foi lançado, os botões de download/exploração abrem um
+popup informando que o lançamento será em breve, em vez de levar às lojas:
+
+- **"Baixar o app"** no `Header` (desktop e mobile).
+- **"Baixe na App Store" / "Google Play"** (`StoreButtons`) no Hero e no CTA
+  final. O `StoreButtons` aceita `interactive={false}` para uso ilustrativo
+  dentro do próprio modal.
+- **"Explorar no app"** nos cards de Cidades (`Cities`).
+
 ## Footer — contato
 
 A coluna **Contato** exibe **e-mail** (`mailto:`) e **telefone** (`tel:`),
@@ -50,8 +60,13 @@ configurados em `siteConfig.contact`.
 O botão na seção Guia Local abre o **formulário de parceiros** em nova aba
 (`siteConfig.links.partnerForm` — placeholder `<<URL_FORMS_PARCEIRO>>`).
 
----
+## Carrossel de telas do app
 
-> Próximo lote:
-> - **Popup "em breve"** nos botões de download/explorar (`kind="coming-soon"`). _(Lote 3)_
-> - **Carrossel dinâmico** de telas do app na seção "Como funciona". _(Lote 3)_
+`src/components/Carousel.tsx`, exibido na seção **"Como funciona"**:
+
+- Estilo **coverflow 3D** (rotação + profundidade) com transições suaves.
+- **Autorrotativo** (3,5s), com **pausa** ao passar o mouse / focar.
+- Navegação por **setas**, **indicadores** e **teclado** (← / →).
+- Respeita `prefers-reduced-motion` (sem autoplay).
+- As telas usam `Placeholder` (`<<screenshot-...>>`) — troque por imagens reais
+  editando o array `SLIDES` no componente.

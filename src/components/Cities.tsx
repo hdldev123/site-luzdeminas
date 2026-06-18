@@ -1,6 +1,7 @@
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import Placeholder from "./Placeholder";
+import ModalTrigger from "./ModalTrigger";
 import { ArrowRightIcon } from "./Icons";
 
 const CITIES = [
@@ -49,10 +50,13 @@ export default function Cities() {
                 <p className="mt-2 leading-relaxed text-ink/70 dark:text-slate-300">
                   {city.text}
                 </p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-brand-blue dark:text-brand-sky">
+                <ModalTrigger
+                  kind="coming-soon"
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-brand-blue transition hover:gap-2.5 dark:text-brand-sky"
+                >
                   Explorar no app
                   <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
-                </span>
+                </ModalTrigger>
               </div>
             </article>
           </Reveal>

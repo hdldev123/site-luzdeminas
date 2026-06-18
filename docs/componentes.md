@@ -34,6 +34,7 @@ está em `src/app/page.tsx`.
 | `Modal.tsx`                | Diálogo modal acessível e reutilizável. Client. |
 | `ModalsHost.tsx`           | Host único de modais (institucional + "em breve"). Client. |
 | `ModalTrigger.tsx`         | Botão que abre um modal (`openModal`). Client. |
+| `Carousel.tsx`             | Carrossel coverflow 3D das telas do app. Client. |
 
 ## Tema escuro nos componentes
 
