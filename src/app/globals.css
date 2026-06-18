@@ -14,6 +14,9 @@ html {
 
 body {
   @apply bg-surface text-ink antialiased;
+  /* Trava de segurança: nenhum elemento decorativo gera rolagem horizontal
+     (mantém o header e o botão de menu sempre dentro da tela no mobile). */
+  overflow-x: hidden;
 }
 
 /* ---------------------------------------------------------------------------

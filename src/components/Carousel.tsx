@@ -93,9 +93,10 @@ export default function Carousel() {
         if (e.key === "ArrowRight") go(1);
       }}
     >
-      {/* Palco 3D */}
+      {/* Palco 3D — overflow-hidden recorta as "asas" laterais e evita
+          rolagem horizontal em telas pequenas */}
       <div
-        className="relative mx-auto h-[480px] w-full max-w-3xl [perspective:1200px] sm:h-[540px]"
+        className="relative mx-auto h-[480px] w-full max-w-3xl overflow-hidden [perspective:1200px] sm:h-[540px]"
         aria-live="polite"
       >
         {SLIDES.map((slide, i) => {

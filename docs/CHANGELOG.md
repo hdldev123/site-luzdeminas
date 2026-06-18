@@ -2,6 +2,14 @@
 
 Registro de mudanças por commit. As mais recentes no topo.
 
+## Fix — rolagem horizontal no mobile (botão de menu sumindo)
+
+- As "asas" laterais do carrossel 3D (slides com `translateX` grande) estouravam
+  a largura da tela e geravam **rolagem horizontal**, empurrando o botão de menu
+  para fora no mobile.
+- Correções: `overflow-hidden` no palco do carrossel (recorta as laterais) e
+  `overflow-x: hidden` no `body` como trava de segurança global.
+
 ## Botão flutuante "voltar ao topo"
 
 - Novo `BackToTop.tsx`: botão flutuante discreto (canto inferior direito) que
