@@ -2,6 +2,12 @@
 
 Registro de mudanças por commit. As mais recentes no topo.
 
+## Logo oficial no header e footer
+
+- **Header** e **footer** passam a exibir a logo oficial `/logo.svg` (via
+  `next/image`; no header com `priority`) no lugar do componente `Logo`
+  desenhado. O componente `Logo.tsx` deixou de ser usado.
+
 ## Imagens reais — Cidades e Gamificação
 
 - Cards de **Cidades** agora usam fotos reais: `/cataguases.png`,

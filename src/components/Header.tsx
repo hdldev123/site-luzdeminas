@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Logo from "./Logo";
+import Image from "next/image";
 import AccessibilityControls from "./AccessibilityControls";
 import { openModal } from "@/lib/modal";
 
@@ -31,9 +31,16 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="container-page flex h-16 items-center justify-between gap-4">
+      <div className="container-page flex min-h-16 items-center justify-between gap-4 py-2">
         <a href="#hero" aria-label="Luz de Minas — início">
-          <Logo variant={scrolled ? "dark" : "light"} />
+          <Image
+            src="/logo.svg"
+            alt="Luz de Minas"
+            width={1440}
+            height={810}
+            priority
+            className="h-20 w-auto sm:h-24"
+          />
         </a>
 
         <nav

@@ -1,4 +1,4 @@
-import Logo from "./Logo";
+import Image from "next/image";
 import { siteConfig } from "@/lib/config";
 import { InstagramIcon } from "./Icons";
 import ModalTrigger from "./ModalTrigger";
@@ -12,7 +12,13 @@ export default function Footer() {
     <footer className="bg-brand-darker text-white/80">
       <div className="container-page grid gap-10 py-14 md:grid-cols-[1.6fr_1fr_1fr]">
         <div>
-          <Logo variant="light" />
+          <Image
+            src="/logo.svg"
+            alt="Luz de Minas"
+            width={1440}
+            height={810}
+            className="h-12 w-auto sm:h-24"
+          />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
             Turismo histórico e cultural da Zona da Mata mineira. Explore o
             Circuito Luz de Minas e descubra o modernismo brasileiro a cada passo.

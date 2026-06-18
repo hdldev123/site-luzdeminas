@@ -24,7 +24,6 @@ está em `src/app/page.tsx`.
 
 | Componente                 | Papel |
 |----------------------------|-------|
-| `Logo.tsx`                 | Marca "Luz de Minas" (variações light/dark). |
 | `StoreButtons.tsx`         | Botões App Store / Google Play. |
 | `AccessibilityControls.tsx`| Widget: tamanho de fonte (A/A+/A++) e alternância claro/escuro. Client. |
 | `Reveal.tsx`               | Anima entrada ao entrar na viewport. Client. |
