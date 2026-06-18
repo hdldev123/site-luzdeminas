@@ -2,6 +2,15 @@
 
 Registro de mudanças por commit. As mais recentes no topo.
 
+## Ajuste — Carrossel: centralização e controles
+
+- Corrigido o `transform` inline dos slides para incluir a centralização
+  (`translate(-50%, -50%)`), que antes era sobrescrita pelas classes utilitárias
+  do Tailwind — os celulares agora ficam **centralizados** na tela.
+- Aumentada a altura do palco (`h-[480px] sm:h-[540px]`) para os celulares não
+  transbordarem; as **setas e indicadores ficam abaixo** do carrossel, sem
+  sobreposição.
+
 ## Lote 3 — Popups "em breve" e carrossel de telas do app
 
 - **Popup "em breve"** (`kind="coming-soon"`) nos botões de download/exploração,

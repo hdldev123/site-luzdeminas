@@ -55,20 +55,23 @@ export default function Carousel() {
 
   const styleFor = (off: number) => {
     const abs = Math.abs(off);
+    // Base centraliza o slide no palco; o coverflow é aplicado em seguida.
+    // (precisa estar no transform inline, senão sobrescreveria as classes utilitárias)
+    const center = "translate(-50%, -50%)";
     if (abs > 2) {
       return {
-        transform: `translateX(${off > 0 ? 140 : -140}%) scale(0.55)`,
+        transform: `${center} translateX(${off > 0 ? 160 : -160}%) scale(0.5)`,
         opacity: 0,
         zIndex: 0,
         pointerEvents: "none" as const,
       };
     }
-    const translate = off * 56; // % de deslocamento lateral
+    const translate = off * 52; // % de deslocamento lateral
     const rotate = off * -22; // graus de rotação em Y (efeito coverflow)
     const scale = 1 - abs * 0.16;
     const opacity = off === 0 ? 1 : abs === 1 ? 0.7 : 0.35;
     return {
-      transform: `translateX(${translate}%) rotateY(${rotate}deg) scale(${scale})`,
+      transform: `${center} translateX(${translate}%) rotateY(${rotate}deg) scale(${scale})`,
       opacity,
       zIndex: 30 - abs,
     };
@@ -92,7 +95,7 @@ export default function Carousel() {
     >
       {/* Palco 3D */}
       <div
-        className="relative mx-auto h-[420px] w-full max-w-3xl [perspective:1200px] sm:h-[460px]"
+        className="relative mx-auto h-[480px] w-full max-w-3xl [perspective:1200px] sm:h-[540px]"
         aria-live="polite"
       >
         {SLIDES.map((slide, i) => {
@@ -101,7 +104,7 @@ export default function Carousel() {
           return (
             <div
               key={slide.label}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-out [transform-style:preserve-3d]"
+              className="absolute left-1/2 top-1/2 transition-all duration-700 ease-out [transform-style:preserve-3d]"
               style={styleFor(off)}
               aria-hidden={!isActive}
             >
