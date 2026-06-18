@@ -17,7 +17,7 @@ const CITIES = [
     placeholder: "<<foto-leopoldina>>",
     src: "/leopoldina.jpg",
     alt: "Centro histórico de Leopoldina",
-    text: "Tradição cafeeira, casario histórico e a hospitalidade que define a Zona da Mata.",
+    text: "Tradição cafeeira, casario histórico e a hospitalidade excelente que define a Zona da Mata.",
   },
   {
     name: "Piacatuba / Itamarati",
