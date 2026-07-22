@@ -2,6 +2,31 @@
 
 Registro de mudanças por commit. As mais recentes no topo.
 
+## Inscrição passa a captar a cidade
+
+- `SubscribeForm` ganhou o campo **cidade** abaixo do e-mail, obrigatório, com
+  `<datalist>` sugerindo as cidades do circuito sem impedir outras.
+- Layout do formulário passou de "e-mail + botão lado a lado" para os dois
+  campos empilhados com o botão em largura total.
+- `POST /api/inscrever` valida a cidade (2 a 80 caracteres), envia ao Formspree
+  e grava na nova coluna do `data/inscricoes.csv`. O assunto da notificação
+  passou a incluir a cidade ("Nova inscrição — Cataguases").
+
+## "Seja um parceiro" vira modal com formulário
+
+- O botão do Guia Local deixou de abrir um link externo e passou a abrir um
+  modal (`kind="partner"`) com **`PartnerForm.tsx`**: nome, e-mail, telefone
+  (obrigatórios) e mensagem (opcional), no mesmo padrão do `SubscribeForm`.
+- Nova rota **`POST /api/parceiro`** → Formspree via `FORMSPREE_PARCEIRO_ENDPOINT`,
+  com fallback em `data/parceiros.csv` (com escape de CSV, já que a mensagem
+  livre pode conter vírgulas e aspas).
+- Lógica comum das duas rotas extraída para **`src/lib/leads.ts`** — validação,
+  rate limit por rota, envio ao Formspree e escrita em CSV.
+- **Correção de UX**: o rate limit passou a ser verificado **depois** da
+  validação. Antes, tentativas inválidas contavam para o teto, então errar o
+  preenchimento 3 vezes travava o usuário por 10 minutos.
+- `siteConfig.links.partnerForm` removido — não há mais formulário externo.
+
 ## Paleta do site: azul → verde-escuro + laranja
 
 - O site adota a identidade atual do app. O verde foi **amostrado pixel a pixel**

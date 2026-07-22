@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
-import { appendFile, mkdir, readFile } from "node:fs/promises";
-import path from "node:path";
+import {
+  EMAIL_RE,
+  MAX_EMAIL_LENGTH,
+  appendCsv,
+  clientIp,
+  isRateLimited,
+  sendToFormspree,
+} from "@/lib/leads";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -9,124 +15,45 @@ export const dynamic = "force-dynamic";
  * Recebe as inscrições de e-mail do modal "Chegando muito em breve".
  *
  * Destino do e-mail (nesta ordem):
- * 1. `FORMSPREE_ENDPOINT` — se definida, a inscrição é enviada ao Formspree.
- *    Aceita a URL completa (`https://formspree.io/f/abcdwxyz`) ou só o ID do
- *    formulário (`abcdwxyz`).
+ * 1. `FORMSPREE_ENDPOINT` — se definida, envia ao Formspree. Aceita a URL
+ *    completa (`https://formspree.io/f/abcdwxyz`) ou só o ID (`abcdwxyz`).
  * 2. Fallback local: grava em `data/inscricoes.csv` na raiz do projeto.
  *    Funciona em dev e em servidor próprio; em hospedagem serverless (Vercel,
  *    Netlify) o disco é efêmero — nesse caso o Formspree é obrigatório.
  */
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const MAX_EMAIL_LENGTH = 254;
+const CSV_ARQUIVO = "inscricoes.csv";
+const CSV_HEADER = "email,cidade,origem,data\n";
 
-const CSV_PATH = path.join(process.cwd(), "data", "inscricoes.csv");
-const CSV_HEADER = "email,data,origem\n";
+const MAX_CIDADE = 80;
 
-/* Rate limit simples em memória: 5 envios por IP a cada 10 minutos. */
 const RATE_LIMIT_MAX = 5;
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const hits = new Map<string, number[]>();
+const RATE_LIMIT_JANELA_MS = 10 * 60 * 1000;
 
-function isRateLimited(ip: string) {
-  const now = Date.now();
-  const recent = (hits.get(ip) ?? []).filter(
-    (t) => now - t < RATE_LIMIT_WINDOW_MS
-  );
-  recent.push(now);
-  hits.set(ip, recent);
-  return recent.length > RATE_LIMIT_MAX;
-}
-
-function clientIp(req: Request) {
-  const forwarded = req.headers.get("x-forwarded-for");
-  return forwarded?.split(",")[0]?.trim() || "desconhecido";
-}
-
-async function saveToCsv(email: string, origem: string) {
-  await mkdir(path.dirname(CSV_PATH), { recursive: true });
-
-  // Evita duplicar o mesmo e-mail no arquivo.
-  const existing = await readFile(CSV_PATH, "utf8").catch(() => "");
-  if (existing.includes(`${email},`)) return { duplicated: true };
-
-  const header = existing ? "" : CSV_HEADER;
-  await appendFile(
-    CSV_PATH,
-    `${header}${email},${new Date().toISOString()},${origem}\n`,
-    "utf8"
-  );
-  return { duplicated: false };
-}
-
-/** Aceita a URL completa ou apenas o ID do formulário Formspree. */
-function formspreeUrl(value: string) {
-  const v = value.trim();
-  return v.startsWith("http") ? v : `https://formspree.io/f/${v}`;
-}
-
-/** Extrai a mensagem de erro do formato de resposta do Formspree. */
-function formspreeError(data: unknown, status: number) {
-  const d = data as {
-    error?: string;
-    errors?: Array<{ message?: string; field?: string }>;
-  } | null;
-  const fromList = d?.errors?.map((e) => e.message).filter(Boolean).join("; ");
-  return fromList || d?.error || `Formspree respondeu ${status}`;
-}
-
-async function sendToFormspree(endpoint: string, email: string, origem: string) {
-  const res = await fetch(formspreeUrl(endpoint), {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({
-      // `email` é campo especial do Formspree (vira o reply-to da notificação).
-      email,
-      // `_subject` define o assunto do e-mail de notificação.
-      _subject: "Nova inscrição — Luz de Minas",
-      origem,
-      data: new Date().toISOString(),
-    }),
-  });
-
-  if (!res.ok) {
-    const data = await res.json().catch(() => null);
-    throw new Error(formspreeError(data, res.status));
-  }
-}
+const SUCESSO = "Pronto! Avisaremos você assim que o app for lançado.";
 
 export async function POST(req: Request) {
-  const ip = clientIp(req);
-
-  if (isRateLimited(ip)) {
-    return NextResponse.json(
-      { error: "Muitas tentativas. Tente novamente em alguns minutos." },
-      { status: 429 }
-    );
-  }
-
   let body: unknown;
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json(
-      { error: "Requisição inválida." },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "Requisição inválida." }, { status: 400 });
   }
 
-  const payload = body as { email?: unknown; _gotcha?: unknown } | null;
+  const payload = body as
+    | { email?: unknown; cidade?: unknown; _gotcha?: unknown }
+    | null;
 
   // Honeypot: campo invisível no formulário. Se veio preenchido, é bot —
   // respondemos "sucesso" sem registrar nada.
   if (typeof payload?._gotcha === "string" && payload._gotcha.trim() !== "") {
-    return NextResponse.json({
-      message: "Pronto! Avisaremos você assim que o app for lançado.",
-    });
+    return NextResponse.json({ message: SUCESSO });
   }
 
   const raw = payload?.email;
   const email = typeof raw === "string" ? raw.trim().toLowerCase() : "";
+  const cidade =
+    typeof payload?.cidade === "string" ? payload.cidade.trim() : "";
 
   if (!email || email.length > MAX_EMAIL_LENGTH || !EMAIL_RE.test(email)) {
     return NextResponse.json(
@@ -134,26 +61,49 @@ export async function POST(req: Request) {
       { status: 400 }
     );
   }
+  if (cidade.length < 2 || cidade.length > MAX_CIDADE) {
+    return NextResponse.json(
+      { error: "Informe a sua cidade." },
+      { status: 400 }
+    );
+  }
 
   const origem = "landing-modal";
+
+  // Só envios válidos contam para o rate limit: quem digita o e-mail errado
+  // não deve ficar travado. As tentativas inválidas param antes daqui, sem I/O.
+  if (isRateLimited("inscrever", clientIp(req), RATE_LIMIT_MAX, RATE_LIMIT_JANELA_MS)) {
+    return NextResponse.json(
+      { error: "Muitas tentativas. Tente novamente em alguns minutos." },
+      { status: 429 }
+    );
+  }
 
   try {
     const endpoint = process.env.FORMSPREE_ENDPOINT;
 
     if (endpoint) {
-      await sendToFormspree(endpoint, email, origem);
+      await sendToFormspree(endpoint, {
+        email,
+        cidade,
+        _subject: `Nova inscrição — ${cidade}`,
+        origem,
+      });
     } else {
-      const { duplicated } = await saveToCsv(email, origem);
-      if (duplicated) {
+      const { duplicado } = await appendCsv(
+        CSV_ARQUIVO,
+        CSV_HEADER,
+        [email, cidade, origem],
+        email
+      );
+      if (duplicado) {
         return NextResponse.json({
           message: "Este e-mail já está na lista. Avisaremos no lançamento!",
         });
       }
     }
 
-    return NextResponse.json({
-      message: "Pronto! Avisaremos você assim que o app for lançado.",
-    });
+    return NextResponse.json({ message: SUCESSO });
   } catch (err) {
     console.error("[inscrever] falha ao registrar e-mail:", err);
     return NextResponse.json(

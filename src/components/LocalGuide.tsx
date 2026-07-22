@@ -1,6 +1,5 @@
-import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
-import { siteConfig } from "@/lib/config";
+import ModalTrigger from "./ModalTrigger";
 import { TagIcon, MapPinIcon, WhatsAppIcon, ArrowRightIcon } from "./Icons";
 
 const FOR_TOURISTS = [
@@ -61,15 +60,13 @@ export default function LocalGuide() {
                 restaurante, hotel, farmácia ou loja.
               </p>
             </div>
-            <a
-              href={siteConfig.links.partnerForm}
-              target="_blank"
-              rel="noopener noreferrer"
+            <ModalTrigger
+              kind="partner"
               className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-brand-orange px-6 py-3.5 font-bold text-white shadow-soft transition hover:bg-brand-orange-dark"
             >
               Seja um parceiro
               <ArrowRightIcon className="h-5 w-5" />
-            </a>
+            </ModalTrigger>
           </div>
         </Reveal>
       </div>

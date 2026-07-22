@@ -33,7 +33,7 @@ Mecanismo desacoplado por evento de janela:
 - `src/components/ModalTrigger.tsx` — botão cliente que chama `openModal`, usado
   dentro de componentes de servidor.
 
-Tipos de modal (`ModalKind`): `terms`, `privacy`, `coming-soon`.
+Tipos de modal (`ModalKind`): `terms`, `privacy`, `coming-soon`, `partner`.
 
 ### Institucional (Termos / Política)
 No footer, **Termos de Uso** e **Política de Privacidade** abrem modais
@@ -50,15 +50,27 @@ popup informando que o lançamento será em breve, em vez de levar às lojas:
 - **"Explorar no app"** nos cards de Cidades (`Cities`).
 
 Dentro do popup, no lugar dos botões das lojas, fica o **`SubscribeForm`**:
-campo de e-mail + botão "Inscrever-se" que envia `POST /api/inscrever`.
-Estados tratados: validação local, envio, sucesso (substitui o formulário pela
-confirmação) e erro (mensagem em `aria-live`).
+campos de **e-mail** e **cidade** (ambos obrigatórios) e o botão "Inscrever-se",
+que envia `POST /api/inscrever`. Estados tratados: validação local, envio,
+sucesso (substitui o formulário pela confirmação) e erro (mensagem em
+`aria-live`).
+
+O campo cidade tem um `<datalist>` sugerindo as cidades do circuito
+(Cataguases, Leopoldina, Piacatuba, Itamarati de Minas), mas **aceita qualquer
+cidade digitada** — turistas de fora são justamente o público-alvo.
 
 ### Captação de e-mails (`POST /api/inscrever`)
 Rota em `src/app/api/inscrever/route.ts` (runtime Node). Valida formato e
-tamanho do e-mail, normaliza para minúsculas, descarta envios com o **honeypot**
-`_gotcha` preenchido e aplica **rate limit** simples em memória (5 envios por IP
-a cada 10 min → HTTP 429).
+tamanho do **e-mail** (normalizado para minúsculas) e da **cidade** (2 a 80
+caracteres), descarta envios com o **honeypot** `_gotcha` preenchido e aplica
+**rate limit** simples em memória (5 envios por IP a cada 10 min → HTTP 429).
+
+> O rate limit é conferido **depois** da validação: só envios válidos contam.
+> Assim quem erra o preenchimento não fica travado, e as tentativas inválidas
+> param antes de qualquer I/O.
+
+As duas rotas compartilham `src/lib/leads.ts` (validação, rate limit por rota,
+envio ao Formspree e escrita em CSV).
 
 Destino do e-mail, nesta ordem:
 
@@ -78,10 +90,24 @@ Configuração passo a passo em [configuracao.md](./configuracao.md).
 A coluna **Contato** exibe **e-mail** (`mailto:`) e **telefone** (`tel:`),
 configurados em `siteConfig.contact`.
 
-## "Seja um parceiro"
+## "Seja um parceiro" (`kind="partner"`)
 
-O botão na seção Guia Local abre o **formulário de parceiros** em nova aba
-(`siteConfig.links.partnerForm` — placeholder `<<URL_FORMS_PARCEIRO>>`).
+O botão na seção Guia Local abre um **modal com formulário de cadastro**
+(`PartnerForm.tsx`) — antes ele levava a um formulário externo em nova aba.
+
+Campos: **nome** do negócio/responsável, **e-mail**, **telefone/WhatsApp**
+(todos obrigatórios) e **mensagem** (opcional, até 2000 caracteres). Mesmo
+padrão do `SubscribeForm`: validação no cliente e no servidor, estados de
+envio/sucesso/erro, feedback em `aria-live` e honeypot anti-spam.
+
+### `POST /api/parceiro`
+Valida os campos (nome ≥ 2 caracteres, e-mail no formato, telefone com ao menos
+10 dígitos ignorando máscara) e envia para **`FORMSPREE_PARCEIRO_ENDPOINT`**.
+Sem a variável, grava em `data/parceiros.csv` com escape de CSV — a mensagem
+livre pode conter vírgulas, aspas e quebras de linha.
+
+> O endpoint do Formspree fica **no servidor**: o navegador só conhece
+> `/api/parceiro`. Nada de chave ou URL de formulário no HTML.
 
 ## Carrossel de telas do app
 

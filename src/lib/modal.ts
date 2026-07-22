@@ -4,7 +4,7 @@
  * o ModalsHost (montado uma vez) escuta e renderiza o conteúdo correspondente.
  */
 
-export type ModalKind = "coming-soon" | "terms" | "privacy";
+export type ModalKind = "coming-soon" | "partner" | "terms" | "privacy";
 
 export const MODAL_EVENT = "ldm:modal";
 

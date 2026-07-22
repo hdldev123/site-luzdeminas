@@ -11,9 +11,6 @@ export const siteConfig = {
   links: {
     appStore: "<<URL_APP_STORE>>",
     googlePlay: "<<URL_GOOGLE_PLAY>>",
-    // Formulário de cadastro de parceiros do Guia Local (botão "Seja um parceiro").
-    // Troque pelo link real do formulário (Google Forms, Typeform, etc.).
-    partnerForm: "<<URL_FORMS_PARCEIRO>>",
   },
 
   // Contato exibido no footer (e-mail + telefone)

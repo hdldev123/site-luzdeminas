@@ -13,7 +13,7 @@ está em `src/app/page.tsx`.
 | 4 | `Features.tsx`        | Grid de funcionalidades com ícones. |
 | 5 | `Cities.tsx`          | Cidades do circuito (cards). |
 | 6 | `Gamification.tsx`    | Conquistas/medalhas e coleta por QR. |
-| 7 | `LocalGuide.tsx`      | Guia Local + CTA "Seja um parceiro". |
+| 7 | `LocalGuide.tsx`      | Guia Local + CTA "Seja um parceiro" (abre modal com formulário). |
 | 8 | `FinalCTA.tsx`        | Faixa final de download. |
 | 9 | `Footer.tsx`          | Rodapé: marca, redes sociais e institucional. |
 
@@ -25,7 +25,8 @@ está em `src/app/page.tsx`.
 | Componente                 | Papel |
 |----------------------------|-------|
 | `StoreButtons.tsx`         | Botões App Store / Google Play (Hero e CTA final). |
-| `SubscribeForm.tsx`        | Campo de e-mail do modal "em breve" → `POST /api/inscrever`. Client. |
+| `SubscribeForm.tsx`        | E-mail + cidade do modal "em breve" → `POST /api/inscrever`. Client. |
+| `PartnerForm.tsx`          | Cadastro de parceiros (nome, e-mail, telefone, mensagem) → `POST /api/parceiro`. Client. |
 | `AccessibilityControls.tsx`| Widget: tamanho de fonte (A/A+/A++) e alternância claro/escuro. Client. |
 | `Reveal.tsx`               | Anima entrada ao entrar na viewport. Client. |
 | `SectionHeading.tsx`       | Cabeçalho padrão de seção (eyebrow + título + descrição). |

@@ -8,7 +8,6 @@ Tudo o que muda com frequência está centralizado em **`src/lib/config.ts`**.
 |---------------------------|-----------|
 | `links.appStore`          | Link da App Store (placeholder `<<URL_APP_STORE>>`). |
 | `links.googlePlay`        | Link do Google Play (placeholder `<<URL_GOOGLE_PLAY>>`). |
-| `links.partnerForm`       | Formulário do botão "Seja um parceiro" (`<<URL_FORMS_PARCEIRO>>`). |
 | `contact.email`           | E-mail exibido no footer (`mailto:`). |
 | `contact.phoneDisplay`    | Telefone para exibição (ex.: `(32) 99999-9999`). |
 | `contact.phoneHref`       | Telefone em E.164 para o link `tel:` (ex.: `+5532999999999`). |
@@ -19,25 +18,29 @@ Tudo o que muda com frequência está centralizado em **`src/lib/config.ts`**.
 > **Termos de Uso** e **Política de Privacidade** são modais; o texto fica em
 > `src/components/ModalsHost.tsx` (template — revisar juridicamente).
 
-## Inscrições por e-mail — Formspree
+## Formulários — Formspree
 
-O formulário "Inscreva-se" envia para `POST /api/inscrever`. O destino depende da
-variável de ambiente **`FORMSPREE_ENDPOINT`**:
+São **dois formulários independentes**, cada um com sua rota e sua variável de
+ambiente. Use **formulários diferentes** no Formspree para não misturar os leads.
 
-| Cenário | Comportamento |
-|---------|---------------|
-| Variável **definida** | A inscrição vai para o **Formspree** (`POST` JSON com `email`, `_subject`, `origem`, `data`). |
-| Variável **ausente**  | Fallback: grava em `data/inscricoes.csv` na raiz (pasta no `.gitignore`). Útil em dev. |
+| Formulário | Rota | Variável | Fallback local |
+|------------|------|----------|----------------|
+| "Inscreva-se" (modal em breve) — e-mail e cidade | `POST /api/inscrever` | `FORMSPREE_ENDPOINT` | `data/inscricoes.csv` |
+| "Seja um parceiro" (Guia Local) | `POST /api/parceiro` | `FORMSPREE_PARCEIRO_ENDPOINT` | `data/parceiros.csv` |
+
+Com a variável **definida**, o envio vai para o Formspree. **Ausente**, grava no
+CSV da raiz (pasta `data/` no `.gitignore`) — útil em dev.
 
 ### Como configurar
 
-1. Crie uma conta em [formspree.io](https://formspree.io) e um **novo formulário**.
-2. Copie o endpoint em **Forms → seu form → Integration** — algo como
+1. Crie uma conta em [formspree.io](https://formspree.io) e **dois formulários**.
+2. Copie o endpoint de cada um em **Forms → seu form → Integration** — algo como
    `https://formspree.io/f/abcdwxyz`.
 3. Copie `.env.example` para **`.env.local`** na raiz e preencha:
 
 ```bash
 FORMSPREE_ENDPOINT="https://formspree.io/f/abcdwxyz"
+FORMSPREE_PARCEIRO_ENDPOINT="https://formspree.io/f/wxyzabcd"
 ```
 
 4. Reinicie o `npm run dev` (variáveis de ambiente só são lidas na inicialização).
@@ -51,12 +54,16 @@ FORMSPREE_ENDPOINT="https://formspree.io/f/abcdwxyz"
 
 ### Detalhes de implementação
 
+- Lógica comum às duas rotas em **`src/lib/leads.ts`** (validação, rate limit,
+  envio ao Formspree, escrita em CSV).
 - `email` é campo especial do Formspree: vira o **reply-to** da notificação.
-- `_subject` define o assunto ("Nova inscrição — Luz de Minas").
+- `_subject` define o assunto ("Nova inscrição — Luz de Minas" / "Novo parceiro
+  — <nome>").
 - `_gotcha` é um **honeypot** invisível no formulário; se vier preenchido, a
   requisição é descartada silenciosamente (bot).
 - Erros do Formspree são lidos do campo `errors[].message` e logados no servidor;
   o usuário vê uma mensagem genérica.
+- O endpoint **nunca chega ao navegador**: o cliente só conhece `/api/...`.
 
 > ⚠️ Em hospedagem **serverless** (Vercel/Netlify) o disco é efêmero: o CSV do
 > fallback não persiste. Em produção, configurar o Formspree é obrigatório.

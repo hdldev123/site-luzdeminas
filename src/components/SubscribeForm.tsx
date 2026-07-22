@@ -7,25 +7,49 @@ type Status = "idle" | "loading" | "success" | "error";
 /** Validação leve no cliente — a validação de verdade acontece na API. */
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+/** Sugestões do circuito; o campo aceita qualquer cidade digitada. */
+const CIDADES_SUGERIDAS = [
+  "Cataguases",
+  "Leopoldina",
+  "Piacatuba",
+  "Itamarati de Minas",
+];
+
+const CAMPO =
+  "w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-ink shadow-sm outline-none transition placeholder:text-ink/40 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/40 disabled:opacity-60 dark:border-white/15 dark:bg-night-soft dark:text-slate-100 dark:placeholder:text-slate-500";
+
 /**
- * Captura de e-mails para avisar sobre o lançamento do app.
+ * Captura de e-mail e cidade para avisar sobre o lançamento do app.
  * Substitui os botões das lojas dentro do modal "Chegando muito em breve".
  */
 export default function SubscribeForm() {
   const [email, setEmail] = useState("");
+  const [cidade, setCidade] = useState("");
   const [gotcha, setGotcha] = useState(""); // honeypot anti-spam
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
 
   const loading = status === "loading";
 
+  function limparErro() {
+    if (status === "error") {
+      setStatus("idle");
+      setMessage("");
+    }
+  }
+
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const value = email.trim();
+    const dados = { email: email.trim(), cidade: cidade.trim() };
 
-    if (!EMAIL_RE.test(value)) {
+    if (!EMAIL_RE.test(dados.email)) {
       setStatus("error");
       setMessage("Digite um e-mail válido para continuar.");
+      return;
+    }
+    if (dados.cidade.length < 2) {
+      setStatus("error");
+      setMessage("Informe a sua cidade.");
       return;
     }
 
@@ -36,7 +60,7 @@ export default function SubscribeForm() {
       const res = await fetch("/api/inscrever", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: value, _gotcha: gotcha }),
+        body: JSON.stringify({ ...dados, _gotcha: gotcha }),
       });
       const data = (await res.json().catch(() => ({}))) as {
         message?: string;
@@ -56,6 +80,7 @@ export default function SubscribeForm() {
         data.message ?? "Pronto! Avisaremos você assim que o app for lançado."
       );
       setEmail("");
+      setCidade("");
     } catch {
       setStatus("error");
       setMessage(
@@ -104,39 +129,68 @@ export default function SubscribeForm() {
         />
       </div>
 
-      <label
-        htmlFor="inscricao-email"
-        className="block text-sm font-semibold text-ink/70 dark:text-slate-300"
-      >
-        Deixe seu e-mail e avisamos no lançamento:
-      </label>
+      <p className="text-sm font-semibold text-ink/70 dark:text-slate-300">
+        Deixe seus dados e avisamos no lançamento:
+      </p>
 
-      <div className="mt-3 flex flex-col gap-2 sm:flex-row">
-        <input
-          id="inscricao-email"
-          name="email"
-          type="email"
-          inputMode="email"
-          autoComplete="email"
-          required
-          placeholder="seu@email.com"
-          value={email}
-          disabled={loading}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            if (status === "error") {
-              setStatus("idle");
-              setMessage("");
-            }
-          }}
-          aria-invalid={status === "error" || undefined}
-          aria-describedby="inscricao-feedback"
-          className="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-ink shadow-sm outline-none transition placeholder:text-ink/40 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/40 disabled:opacity-60 dark:border-white/15 dark:bg-night-soft dark:text-slate-100 dark:placeholder:text-slate-500"
-        />
+      <div className="mt-3 space-y-3">
+        <div>
+          <label htmlFor="inscricao-email" className="sr-only">
+            E-mail
+          </label>
+          <input
+            id="inscricao-email"
+            name="email"
+            type="email"
+            inputMode="email"
+            autoComplete="email"
+            required
+            placeholder="seu@email.com"
+            value={email}
+            disabled={loading}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              limparErro();
+            }}
+            aria-invalid={status === "error" || undefined}
+            aria-describedby="inscricao-feedback"
+            className={CAMPO}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="inscricao-cidade" className="sr-only">
+            Cidade
+          </label>
+          <input
+            id="inscricao-cidade"
+            name="cidade"
+            type="text"
+            autoComplete="address-level2"
+            list="inscricao-cidades"
+            required
+            placeholder="Sua cidade"
+            value={cidade}
+            disabled={loading}
+            onChange={(e) => {
+              setCidade(e.target.value);
+              limparErro();
+            }}
+            aria-describedby="inscricao-feedback"
+            className={CAMPO}
+          />
+          {/* Sugere as cidades do circuito, mas aceita qualquer outra. */}
+          <datalist id="inscricao-cidades">
+            {CIDADES_SUGERIDAS.map((c) => (
+              <option key={c} value={c} />
+            ))}
+          </datalist>
+        </div>
+
         <button
           type="submit"
           disabled={loading}
-          className="shrink-0 rounded-xl bg-brand-orange px-6 py-3 font-bold text-white shadow-soft transition hover:bg-brand-orange-dark disabled:cursor-not-allowed disabled:opacity-70"
+          className="w-full rounded-xl bg-brand-orange px-6 py-3 font-bold text-white shadow-soft transition hover:bg-brand-orange-dark disabled:cursor-not-allowed disabled:opacity-70"
         >
           {loading ? "Enviando…" : "Inscrever-se"}
         </button>
@@ -154,7 +208,7 @@ export default function SubscribeForm() {
       >
         {status === "error"
           ? message
-          : "Usamos seu e-mail só para avisar do lançamento. Sem spam."}
+          : "Usamos seus dados só para avisar do lançamento. Sem spam."}
       </p>
     </form>
   );
