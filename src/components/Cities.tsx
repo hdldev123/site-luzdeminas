@@ -32,8 +32,8 @@ export default function Cities() {
   return (
     <section id="cidades" className="container-page py-20 sm:py-24">
       <SectionHeading
-        eyebrow="O circuito"
-        title="Cidades do Circuito Luz de Minas"
+        eyebrow="A rota"
+        title="Cidades da Rota Luz de Minas"
         description="Uma macrorregião que conecta história, arte e natureza no coração da Zona da Mata mineira."
       />
 
@@ -57,7 +57,7 @@ export default function Cities() {
                 </p>
                 <ModalTrigger
                   kind="coming-soon"
-                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-brand-blue transition hover:gap-2.5 dark:text-brand-sky"
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-brand-green transition hover:gap-2.5 dark:text-brand-leaf"
                 >
                   Explorar no app
                   <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />

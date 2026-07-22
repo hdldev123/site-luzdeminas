@@ -3,13 +3,20 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Placeholder from "./Placeholder";
 
-/** Telas do app exibidas no carrossel. Troque os placeholders por imagens reais. */
+/**
+ * Telas reais do app exibidas no carrossel, em ordem de narrativa:
+ * descobrir → percorrer → viver a cidade → colecionar → seu espaço.
+ * A tela inicial (/inicio.jpeg) fica de fora por já ser o mockup do Hero.
+ */
 const SLIDES = [
-  { src: "/rotas.jpeg", label: "<<screenshot-rotas>>", caption: "Rotas guiadas no mapa" },
-  { src: "/audio.jpeg", label: "<<screenshot-audioguia>>", caption: "Áudio-guia em cada marco" },
-  { src: "/qr.jpeg", label: "<<screenshot-qrcode>>", caption: "Coleta por QR Code" },
-  { src: "/medalhas.jpeg", label: "<<screenshot-conquistas>>", caption: "Conquistas e medalhas" },
-  { src: "/guia.jpeg", label: "<<screenshot-guia-local>>", caption: "Guia Local com cupons" },
+  { src: "/rotas.jpeg", label: "screenshot-rotas", caption: "Destinos turísticos por macrorregião" },
+  { src: "/audio.jpeg", label: "screenshot-audioguia", caption: "Áudio-guia e história de cada marco" },
+  { src: "/caminhadas.jpeg", label: "screenshot-caminhadas", caption: "Percursos de corrida e caminhada" },
+  { src: "/eventos.jpeg", label: "screenshot-eventos", caption: "Manifestações culturais por cidade" },
+  { src: "/guia.jpeg", label: "screenshot-guia-local", caption: "Guia Local com serviços úteis" },
+  { src: "/medalhas.jpeg", label: "screenshot-medalhas", caption: "Quadro de medalhas e conquistas" },
+  { src: "/perfil.jpeg", label: "screenshot-perfil", caption: "Seu perfil e progresso nas rotas" },
+  { src: "/menu.jpeg", label: "screenshot-menu", caption: "Tudo a um toque no menu" },
 ];
 
 const AUTOPLAY_MS = 3500;
@@ -146,7 +153,7 @@ export default function Carousel() {
           type="button"
           onClick={() => go(-1)}
           aria-label="Slide anterior"
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-brand-blue shadow-card transition hover:bg-brand-blue hover:text-white dark:bg-night-card dark:text-brand-sky dark:ring-1 dark:ring-white/10"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-brand-green shadow-card transition hover:bg-brand-green hover:text-white dark:bg-night-card dark:text-brand-leaf dark:ring-1 dark:ring-white/10"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
@@ -166,7 +173,7 @@ export default function Carousel() {
               className={`h-2.5 rounded-full transition-all ${
                 i === active
                   ? "w-6 bg-brand-orange"
-                  : "w-2.5 bg-brand-blue/25 hover:bg-brand-blue/50 dark:bg-white/25 dark:hover:bg-white/50"
+                  : "w-2.5 bg-brand-green/25 hover:bg-brand-green/50 dark:bg-white/25 dark:hover:bg-white/50"
               }`}
             />
           ))}
@@ -176,7 +183,7 @@ export default function Carousel() {
           type="button"
           onClick={() => go(1)}
           aria-label="Próximo slide"
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-brand-blue shadow-card transition hover:bg-brand-blue hover:text-white dark:bg-night-card dark:text-brand-sky dark:ring-1 dark:ring-white/10"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-brand-green shadow-card transition hover:bg-brand-green hover:text-white dark:bg-night-card dark:text-brand-leaf dark:ring-1 dark:ring-white/10"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />

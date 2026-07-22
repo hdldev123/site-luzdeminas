@@ -74,7 +74,7 @@ export default function Header() {
             aria-haspopup="dialog"
             className="hidden rounded-full bg-brand-orange px-5 py-2.5 text-sm font-bold text-white shadow-soft transition hover:bg-brand-orange-dark sm:inline-block"
           >
-            Baixar o app
+            Inscreva-se
           </button>
 
           <button
@@ -127,7 +127,7 @@ export default function Header() {
               aria-haspopup="dialog"
               className="mt-2 rounded-full bg-brand-orange px-5 py-3 text-center font-bold text-white"
             >
-              Baixar o app
+              Inscreva-se
             </button>
             <div className="mt-3 text-ink dark:text-slate-200">
               <AccessibilityControls compact />

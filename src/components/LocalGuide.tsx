@@ -16,7 +16,7 @@ export default function LocalGuide() {
         {/* Para turistas */}
         <Reveal>
           <div className="flex h-full flex-col rounded-3xl bg-white p-8 shadow-card dark:bg-night-card dark:ring-1 dark:ring-white/10 sm:p-10">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-brand-blue/10 px-4 py-1.5 text-sm font-bold text-brand-blue dark:bg-brand-sky/10 dark:text-brand-sky">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-brand-green/10 px-4 py-1.5 text-sm font-bold text-brand-green dark:bg-brand-leaf/10 dark:text-brand-leaf">
               <TagIcon className="h-4 w-4" />
               Para turistas
             </span>
@@ -47,7 +47,7 @@ export default function LocalGuide() {
 
         {/* Para parceiros */}
         <Reveal delay={120}>
-          <div className="flex h-full flex-col justify-between rounded-3xl bg-gradient-to-br from-brand-blue to-brand-darker p-8 text-white shadow-soft sm:p-10">
+          <div className="flex h-full flex-col justify-between rounded-3xl bg-gradient-to-br from-brand-green to-brand-darker p-8 text-white shadow-soft sm:p-10">
             <div>
               <span className="inline-flex w-fit items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-bold">
                 Para o comércio local

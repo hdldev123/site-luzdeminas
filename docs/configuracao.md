@@ -19,6 +19,48 @@ Tudo o que muda com frequência está centralizado em **`src/lib/config.ts`**.
 > **Termos de Uso** e **Política de Privacidade** são modais; o texto fica em
 > `src/components/ModalsHost.tsx` (template — revisar juridicamente).
 
+## Inscrições por e-mail — Formspree
+
+O formulário "Inscreva-se" envia para `POST /api/inscrever`. O destino depende da
+variável de ambiente **`FORMSPREE_ENDPOINT`**:
+
+| Cenário | Comportamento |
+|---------|---------------|
+| Variável **definida** | A inscrição vai para o **Formspree** (`POST` JSON com `email`, `_subject`, `origem`, `data`). |
+| Variável **ausente**  | Fallback: grava em `data/inscricoes.csv` na raiz (pasta no `.gitignore`). Útil em dev. |
+
+### Como configurar
+
+1. Crie uma conta em [formspree.io](https://formspree.io) e um **novo formulário**.
+2. Copie o endpoint em **Forms → seu form → Integration** — algo como
+   `https://formspree.io/f/abcdwxyz`.
+3. Copie `.env.example` para **`.env.local`** na raiz e preencha:
+
+```bash
+FORMSPREE_ENDPOINT="https://formspree.io/f/abcdwxyz"
+```
+
+4. Reinicie o `npm run dev` (variáveis de ambiente só são lidas na inicialização).
+5. Em produção, cadastre a mesma variável no painel da hospedagem
+   (Vercel: *Settings → Environment Variables*).
+
+> O campo aceita **a URL completa ou só o ID** do formulário (`abcdwxyz`).
+>
+> O primeiro envio precisa ser confirmado no e-mail que o Formspree manda para
+> ativar o formulário — antes disso ele responde com erro.
+
+### Detalhes de implementação
+
+- `email` é campo especial do Formspree: vira o **reply-to** da notificação.
+- `_subject` define o assunto ("Nova inscrição — Luz de Minas").
+- `_gotcha` é um **honeypot** invisível no formulário; se vier preenchido, a
+  requisição é descartada silenciosamente (bot).
+- Erros do Formspree são lidos do campo `errors[].message` e logados no servidor;
+  o usuário vê uma mensagem genérica.
+
+> ⚠️ Em hospedagem **serverless** (Vercel/Netlify) o disco é efêmero: o CSV do
+> fallback não persiste. Em produção, configurar o Formspree é obrigatório.
+
 ## Imagens
 
 O componente `Placeholder.tsx` aceita a prop **`src`**: com `src`, ele renderiza
@@ -58,15 +100,28 @@ Os textos de cada seção ficam no topo do respectivo componente em
 
 ## Identidade visual (`tailwind.config.ts`)
 
+A paleta é **verde-escuro + laranja**, amostrada das telas reais do app para o
+site e o aplicativo lerem como a mesma marca.
+
 | Token          | Cor       | Uso                         |
 | -------------- | --------- | --------------------------- |
-| `brand-blue`   | `#00478F` | Azul institucional          |
-| `brand-dark`   | `#002D72` | Degradê do hero             |
-| `brand-darker` | `#001A44` | Base do degradê / footer    |
+| `brand-green`  | `#24533F` | Verde institucional         |
+| `brand-dark`   | `#153727` | Verde do header do app      |
+| `brand-darker` | `#0C2118` | Base do degradê / footer    |
 | `brand-orange` | `#FF6B35` | Destaque / CTA              |
-| `brand-sky`    | `#4DA3FF` | Acento sobre fundo escuro   |
+| `brand-leaf`   | `#6FD69B` | Acento sobre fundo escuro   |
 | `surface`      | `#F9FAFB` | Fundo claro                 |
 | `ink`          | `#1F2937` | Texto (tema claro)          |
-| `night`        | `#0A1426` | Fundo (tema escuro)         |
-| `night-card`   | `#13213D` | Cartões (tema escuro)       |
-| `night-soft`   | `#0F1B33` | Seções alternadas (escuro)  |
+| `night`        | `#0A1712` | Fundo (tema escuro)         |
+| `night-card`   | `#13291F` | Cartões (tema escuro)       |
+| `night-soft`   | `#0F1F17` | Seções alternadas (escuro)  |
+
+> `#153727` é a cor do header do app — amostrada pixel a pixel das capturas.
+> Ela também alimenta o `themeColor` em `layout.tsx`, o `theme_color` do
+> `site.webmanifest` e o fundo do favicon (`src/app/icon.svg`).
+
+**Contraste (WCAG):** texto branco sobre os verdes rende de 8,8:1 a 16,9:1 —
+folgado para AA e AAA. O `brand-orange` com texto branco fica em ~3,1:1: passa
+em AA apenas para **texto grande**, que é como ele é usado (botões e títulos).
+Por isso o laranja do site (`#FF6B35`) foi mantido em vez do laranja do app
+(`#FF6600`, ~2,9:1), que reprovaria até nesse critério.

@@ -36,10 +36,10 @@ export default function HowItWorks() {
           return (
             <Reveal as="li" key={step.title} delay={i * 120}>
               <div className="relative h-full rounded-2xl bg-white p-7 shadow-card dark:bg-night-card dark:ring-1 dark:ring-white/10">
-                <span className="absolute right-6 top-6 text-5xl font-black text-brand-blue/10 dark:text-brand-sky/20">
+                <span className="absolute right-6 top-6 text-5xl font-black text-brand-green/10 dark:text-brand-leaf/20">
                   {i + 1}
                 </span>
-                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-blue/10 text-brand-blue dark:bg-brand-sky/10 dark:text-brand-sky">
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-green/10 text-brand-green dark:bg-brand-leaf/10 dark:text-brand-leaf">
                   <Icon className="h-7 w-7" />
                 </span>
                 <h3 className="mt-5 text-xl font-bold text-ink dark:text-white">

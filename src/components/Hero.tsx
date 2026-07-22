@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden bg-gradient-to-b from-brand-blue via-brand-dark to-brand-darker text-white"
+      className="relative overflow-hidden bg-gradient-to-b from-brand-green via-brand-dark to-brand-darker text-white"
     >
       {/* brilho decorativo */}
       <div
@@ -14,7 +14,7 @@ export default function Hero() {
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-brand-blue/40 blur-3xl"
+        className="pointer-events-none absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-brand-green/40 blur-3xl"
         aria-hidden="true"
       />
 
@@ -32,8 +32,8 @@ export default function Hero() {
 
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/85">
             Rotas guiadas, áudio-guia narrativo e recompensas a cada marco que
-            você descobre. Caminhe por Cataguases, Leopoldina e
-            Piacatuba/Itamarati numa jornada cultural que cabe no seu bolso.
+            você descobre. Caminhe por Cataguases, Leopoldina/Piacatuba e
+            Itamarati numa jornada cultural que cabe no seu bolso.
           </p>
 
           <div className="mt-8">

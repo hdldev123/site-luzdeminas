@@ -18,15 +18,15 @@ export const siteConfig = {
 
   // Contato exibido no footer (e-mail + telefone)
   contact: {
-    email: "contato@luzdeminas.app",
+    email: "hdlgithub@gmail.com",
     // Telefone em formato de exibição e em formato E.164 para o link tel:
-    phoneDisplay: "(32) 99999-9999",
-    phoneHref: "+5532999999999",
+    phoneDisplay: "(32) 99825-3348",
+    phoneHref: "+5532998253348",
   },
 
   // Redes sociais exibidas no footer (apenas Instagram)
   social: {
-    instagram: "<<URL_INSTAGRAM>>",
+    instagram: "https://www.instagram.com/hdl_solucoes",
   },
 
   // Conteúdo institucional aberto em modal (Termos de Uso / Política de Privacidade)

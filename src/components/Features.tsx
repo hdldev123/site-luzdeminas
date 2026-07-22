@@ -44,7 +44,7 @@ const FEATURES = [
   {
     icon: AccessibilityIcon,
     title: "Acessibilidade de verdade",
-    text: "Ajuste de tamanho de fonte e modo de alto contraste para todo mundo aproveitar o passeio.",
+    text: "Ajuste de tamanho de fonte e ajustes de acessibilidade nativos para todo mundo aproveitar o passeio.",
   },
 ];
 
@@ -66,7 +66,7 @@ export default function Features() {
             const Icon = feature.icon;
             return (
               <Reveal key={feature.title} delay={(i % 3) * 100}>
-                <article className="group h-full rounded-2xl border border-transparent bg-surface p-7 transition hover:border-brand-blue/20 hover:shadow-card dark:border-white/10 dark:bg-night-card dark:hover:border-brand-sky/30">
+                <article className="group h-full rounded-2xl border border-transparent bg-surface p-7 transition hover:border-brand-green/20 hover:shadow-card dark:border-white/10 dark:bg-night-card dark:hover:border-brand-leaf/30">
                   <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-orange/12 text-brand-orange transition group-hover:bg-brand-orange group-hover:text-white">
                     <Icon className="h-6 w-6" />
                   </span>

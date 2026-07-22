@@ -23,6 +23,9 @@ yarn-error.log*
 # env
 .env*.local
 
+# inscricoes captadas pelo formulario (dados de usuarios)
+/data
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -21,7 +21,7 @@ export default function SectionHeading({
       {eyebrow && (
         <span
           className={`text-sm font-bold uppercase tracking-[0.16em] ${
-            invert ? "text-brand-orange" : "text-brand-blue dark:text-brand-sky"
+            invert ? "text-brand-orange" : "text-brand-green dark:text-brand-leaf"
           }`}
         >
           {eyebrow}

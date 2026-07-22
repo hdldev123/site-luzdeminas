@@ -7,23 +7,24 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          // Azul institucional + variações do degradê do hero
-          blue: "#00478F",
-          dark: "#002D72",
-          darker: "#001A44",
-          // Azul mais claro para acentos sobre fundo escuro (modo dark)
-          sky: "#4DA3FF",
+          // Verde institucional + variações do degradê do hero.
+          // Amostrado das telas reais do app (header #153727, cards #24533F).
+          green: "#24533F",
+          dark: "#153727",
+          darker: "#0C2118",
+          // Verde claro para acentos sobre fundo escuro (modo dark)
+          leaf: "#6FD69B",
           // Laranja de destaque / CTA
           orange: "#FF6B35",
           "orange-dark": "#E85A28",
         },
         surface: "#F9FAFB",
         ink: "#1F2937",
-        // Paleta do modo escuro (navy alinhado à marca)
+        // Paleta do modo escuro (verde profundo alinhado à marca)
         night: {
-          DEFAULT: "#0A1426",
-          card: "#13213D",
-          soft: "#0F1B33",
+          DEFAULT: "#0A1712",
+          card: "#13291F",
+          soft: "#0F1F17",
         },
       },
       fontFamily: {
@@ -34,8 +35,8 @@ const config: Config = {
         "2xl": "1.5rem",
       },
       boxShadow: {
-        soft: "0 10px 40px -12px rgba(0, 45, 114, 0.18)",
-        card: "0 4px 24px -8px rgba(0, 45, 114, 0.12)",
+        soft: "0 10px 40px -12px rgba(21, 55, 39, 0.22)",
+        card: "0 4px 24px -8px rgba(21, 55, 39, 0.16)",
       },
       maxWidth: {
         content: "1200px",

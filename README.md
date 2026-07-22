@@ -123,9 +123,9 @@ Definida em `tailwind.config.ts`:
 
 | Token              | Cor       | Uso                         |
 | ------------------ | --------- | --------------------------- |
-| `brand-blue`       | `#00478F` | Azul institucional          |
-| `brand-dark`       | `#002D72` | Degradê do hero             |
-| `brand-darker`     | `#001A44` | Base do degradê             |
+| `brand-green`      | `#24533F` | Verde institucional         |
+| `brand-dark`       | `#153727` | Verde do header do app      |
+| `brand-darker`     | `#0C2118` | Base do degradê             |
 | `brand-orange`     | `#FF6B35` | Destaque / CTA              |
 | `surface`          | `#F9FAFB` | Fundo claro                 |
 | `ink`              | `#1F2937` | Texto                       |

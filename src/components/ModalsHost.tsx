@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Modal from "./Modal";
-import StoreButtons from "./StoreButtons";
+import SubscribeForm from "./SubscribeForm";
 import { MODAL_EVENT, type ModalKind } from "@/lib/modal";
 
 /**
@@ -37,12 +37,8 @@ export default function ModalsHost() {
           lançado em breve nas lojas. Enquanto isso, fique de olho — a sua
           jornada pelo Circuito Luz de Minas está quase pronta para começar!
         </p>
-        <p className="mt-4 text-sm font-semibold text-ink/60 dark:text-slate-400">
-          Em breve disponível para iOS e Android:
-        </p>
-        <div className="mt-3">
-          {/* Botões ilustrativos (não reabrem o popup) */}
-          <StoreButtons variant="dark" interactive={false} />
+        <div className="mt-5 border-t border-black/5 pt-5 dark:border-white/10">
+          <SubscribeForm />
         </div>
       </Modal>
 

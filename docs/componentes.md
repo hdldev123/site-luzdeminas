@@ -7,8 +7,8 @@ está em `src/app/page.tsx`.
 
 | # | Componente            | Papel |
 |---|-----------------------|-------|
-| 1 | `Header.tsx`          | Header fixo (transparente → sólido no scroll), navegação, widget de acessibilidade e CTA "Baixar o app". Client. |
-| 2 | `Hero.tsx`            | Hero com degradê azul, headline, CTAs de loja e mockup do app. |
+| 1 | `Header.tsx`          | Header fixo (transparente → sólido no scroll), navegação, widget de acessibilidade e CTA "Inscreva-se". Client. |
+| 2 | `Hero.tsx`            | Hero com degradê verde, headline, CTAs de loja e mockup do app. |
 | 3 | `HowItWorks.tsx`      | "Como funciona" em 3 passos. |
 | 4 | `Features.tsx`        | Grid de funcionalidades com ícones. |
 | 5 | `Cities.tsx`          | Cidades do circuito (cards). |
@@ -24,14 +24,15 @@ está em `src/app/page.tsx`.
 
 | Componente                 | Papel |
 |----------------------------|-------|
-| `StoreButtons.tsx`         | Botões App Store / Google Play. |
+| `StoreButtons.tsx`         | Botões App Store / Google Play (Hero e CTA final). |
+| `SubscribeForm.tsx`        | Campo de e-mail do modal "em breve" → `POST /api/inscrever`. Client. |
 | `AccessibilityControls.tsx`| Widget: tamanho de fonte (A/A+/A++) e alternância claro/escuro. Client. |
 | `Reveal.tsx`               | Anima entrada ao entrar na viewport. Client. |
 | `SectionHeading.tsx`       | Cabeçalho padrão de seção (eyebrow + título + descrição). |
 | `Placeholder.tsx`          | Placeholder visual de imagem (trocar por `next/image`). |
 | `Icons.tsx`                | Ícones SVG inline. |
 | `Modal.tsx`                | Diálogo modal acessível e reutilizável. Client. |
-| `ModalsHost.tsx`           | Host único de modais (institucional + "em breve"). Client. |
+| `ModalsHost.tsx`           | Host único de modais (institucional + "em breve" com captação de e-mail). Client. |
 | `ModalTrigger.tsx`         | Botão que abre um modal (`openModal`). Client. |
 | `Carousel.tsx`             | Carrossel coverflow 3D das telas do app. Client. |
 | `BackToTop.tsx`            | Botão flutuante discreto "voltar ao topo". Client. |
@@ -39,6 +40,6 @@ está em `src/app/page.tsx`.
 ## Tema escuro nos componentes
 
 As superfícies claras usam variantes `dark:` do Tailwind (ex.: `dark:bg-night-card`,
-`dark:text-slate-300`, `dark:text-brand-sky` para acentos). Tokens de cor do
+`dark:text-slate-300`, `dark:text-brand-leaf` para acentos). Tokens de cor do
 modo escuro estão em `tailwind.config.ts` (`night`, `night.card`, `night.soft`,
 `brand.sky`).

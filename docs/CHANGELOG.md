@@ -2,6 +2,50 @@
 
 Registro de mudanças por commit. As mais recentes no topo.
 
+## Paleta do site: azul → verde-escuro + laranja
+
+- O site adota a identidade atual do app. O verde foi **amostrado pixel a pixel**
+  das capturas (`#153727` no header, `#24533F` nos cards), não estimado no olho.
+- Tokens renomeados para não mentirem sobre o conteúdo:
+  `brand-blue` → **`brand-green`** (23 usos) e `brand-sky` → **`brand-leaf`** (11).
+  `brand-dark` / `brand-darker` mantiveram o nome, com valores verdes.
+- Modo escuro deixou o navy e virou verde profundo (`night` `#0A1712`,
+  `night-card` `#13291F`, `night-soft` `#0F1F17`); sombras `soft`/`card`
+  passaram a usar rgba verde.
+- Atualizados também `themeColor` (`layout.tsx`), `theme_color`
+  (`site.webmanifest`) e o fundo do favicon (`icon.svg`).
+- **Laranja mantido em `#FF6B35`** (o do app é `#FF6600`): com texto branco o do
+  app cai para ~2,9:1 e reprovaria em AA até para texto grande. Diferença visual
+  imperceptível, ganho de acessibilidade real.
+
+## Carrossel — telas novas do app
+
+- Imagens substituídas com o mesmo nome (`rotas`, `medalhas`, `guia`, `inicio`)
+  e **4 telas novas**: `caminhadas`, `eventos`, `perfil`, `menu`.
+- `SLIDES` reordenado em narrativa (descobrir → percorrer → viver a cidade →
+  colecionar → seu espaço) e legendas reescritas para descrever a tela real —
+  elas também alimentam o `alt` de cada imagem.
+- **`qr.jpeg` saiu do carrossel**: a captura mostra o estado de erro do scanner
+  ("Você ainda não chegou ao local"), além de ser da identidade visual antiga.
+- `inicio.jpeg` segue apenas como mockup do Hero, para não repetir a mesma tela.
+- **Privacidade**: o e-mail pessoal visível em `menu.jpeg` e `perfil.jpeg` foi
+  borrado (pixelização + desfoque gaussiano, irreversível) antes de a imagem ir
+  para uma página pública.
+
+## "Baixar o app" vira "Inscreva-se" (captação de e-mails)
+
+- O CTA do **header** (desktop e mobile) passou de "Baixar o app" para
+  **"Inscreva-se"**. Continua abrindo o mesmo modal `coming-soon`, com o mesmo
+  título e o mesmo texto.
+- Dentro do modal, os botões ilustrativos de App Store / Google Play deram lugar
+  ao novo **`SubscribeForm.tsx`**: campo de e-mail + botão "Inscrever-se", com
+  validação, estados de envio/sucesso/erro e feedback em `aria-live`.
+- Nova rota **`POST /api/inscrever`**: valida e normaliza o e-mail, honeypot
+  `_gotcha`, rate limit por IP e envio ao **Formspree** via `FORMSPREE_ENDPOINT`
+  — sem a variável, cai no fallback `data/inscricoes.csv` (ignorado pelo git).
+- Novo `.env.example` documentando a variável.
+- `StoreButtons` segue no **Hero** e no **CTA final** — apenas saiu do modal.
+
 ## Fix — rolagem horizontal no mobile (botão de menu sumindo)
 
 - As "asas" laterais do carrossel 3D (slides com `translateX` grande) estouravam

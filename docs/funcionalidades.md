@@ -40,15 +40,38 @@ No footer, **Termos de Uso** e **Política de Privacidade** abrem modais
 (`kind="terms"` / `kind="privacy"`). O conteúdo é um **template** em PT-BR no
 `ModalsHost.tsx` — revise com apoio jurídico antes de publicar.
 
-### Popup "em breve" (`kind="coming-soon"`)
+### Popup "em breve" + inscrição (`kind="coming-soon"`)
 Como o app ainda não foi lançado, os botões de download/exploração abrem um
 popup informando que o lançamento será em breve, em vez de levar às lojas:
 
-- **"Baixar o app"** no `Header` (desktop e mobile).
+- **"Inscreva-se"** no `Header` (desktop e mobile).
 - **"Baixe na App Store" / "Google Play"** (`StoreButtons`) no Hero e no CTA
-  final. O `StoreButtons` aceita `interactive={false}` para uso ilustrativo
-  dentro do próprio modal.
+  final.
 - **"Explorar no app"** nos cards de Cidades (`Cities`).
+
+Dentro do popup, no lugar dos botões das lojas, fica o **`SubscribeForm`**:
+campo de e-mail + botão "Inscrever-se" que envia `POST /api/inscrever`.
+Estados tratados: validação local, envio, sucesso (substitui o formulário pela
+confirmação) e erro (mensagem em `aria-live`).
+
+### Captação de e-mails (`POST /api/inscrever`)
+Rota em `src/app/api/inscrever/route.ts` (runtime Node). Valida formato e
+tamanho do e-mail, normaliza para minúsculas, descarta envios com o **honeypot**
+`_gotcha` preenchido e aplica **rate limit** simples em memória (5 envios por IP
+a cada 10 min → HTTP 429).
+
+Destino do e-mail, nesta ordem:
+
+1. **Formspree** — se `FORMSPREE_ENDPOINT` estiver definida, envia `POST` JSON
+   com `email` (vira reply-to), `_subject`, `origem` e `data`. Aceita a URL
+   completa ou só o ID do formulário. Erros são lidos de `errors[].message`.
+2. **Fallback local** — grava em `data/inscricoes.csv` (`email,data,origem`),
+   ignorando duplicados. A pasta `/data` está no `.gitignore`.
+
+Configuração passo a passo em [configuracao.md](./configuracao.md).
+
+> ⚠️ Em hospedagem **serverless** (Vercel/Netlify) o disco é efêmero e o
+> fallback em arquivo não persiste — em produção, use o Formspree.
 
 ## Footer — contato
 

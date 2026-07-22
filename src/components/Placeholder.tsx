@@ -52,8 +52,8 @@ export default function Placeholder({
       data-placeholder={label}
       className={`relative flex items-center justify-center overflow-hidden ${
         variant === "screenshot"
-          ? "bg-gradient-to-b from-brand-blue to-brand-darker"
-          : "bg-gradient-to-br from-brand-blue/15 via-brand-blue/5 to-brand-orange/15"
+          ? "bg-gradient-to-b from-brand-green to-brand-darker"
+          : "bg-gradient-to-br from-brand-green/15 via-brand-green/5 to-brand-orange/15"
       } ${className}`}
     >
       <div

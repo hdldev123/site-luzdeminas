@@ -3,7 +3,7 @@
 import { openModal } from "@/lib/modal";
 
 type StoreButtonsProps = {
-  /** "light" usa botões claros (bom sobre o azul); "dark" usa botões escuros */
+  /** "light" usa botões claros (bom sobre o verde); "dark" usa botões escuros */
   variant?: "light" | "dark";
   className?: string;
   /**
