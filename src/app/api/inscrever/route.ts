@@ -32,7 +32,13 @@ const CSV_HEADER = "email,cidade,origem,data\n";
 
 const MAX_CIDADE = 80;
 
-const RATE_LIMIT_MAX = 5;
+/**
+ * Teto alto de propósito: em evento, feira ou escola todo mundo acessa pelo
+ * mesmo Wi-Fi e sai pelo mesmo IP público (NAT). Um limite baixo bloquearia
+ * inscritos legítimos em massa. Isto aqui é freio contra script de spam, não
+ * contra fila de gente no estande.
+ */
+const RATE_LIMIT_MAX = 60;
 const RATE_LIMIT_JANELA_MS = 10 * 60 * 1000;
 
 const SUCESSO = "Pronto! Avisaremos você assim que o app for lançado.";

@@ -23,8 +23,11 @@ export const dynamic = "force-dynamic";
 const CSV_ARQUIVO = "parceiros.csv";
 const CSV_HEADER = "nome,email,telefone,mensagem,data\n";
 
-/* Mais restrito que a inscrição: cadastro de parceiro é ato deliberado. */
-const RATE_LIMIT_MAX = 3;
+/**
+ * Mais restrito que a inscrição, mas ainda folgado: num evento vários
+ * comerciantes podem se cadastrar pelo mesmo Wi-Fi, saindo pelo mesmo IP.
+ */
+const RATE_LIMIT_MAX = 20;
 const RATE_LIMIT_JANELA_MS = 10 * 60 * 1000;
 
 const LIMITES = {
