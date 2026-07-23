@@ -2,6 +2,18 @@
 
 Registro de mudanças por commit. As mais recentes no topo.
 
+## Brevo como destino das inscrições
+
+- Nova cadeia de destinos em `/api/inscrever`: **Brevo** (`BREVO_API_KEY`) →
+  Formspree → CSV local. O Formspree grátis para em 50 inscrições/mês e é um
+  relay de e-mail, não uma lista: no lançamento não haveria para quem disparar.
+  O Brevo guarda até 100 mil contatos no grátis e envia a campanha.
+- `sendToBrevo` em `leads.ts` usa `updateEnabled: true` (reinscrição atualiza
+  em vez de falhar) e grava a cidade no atributo `CIDADE`.
+- **Retry de uma tentativa** em falhas transitórias (rede, 5xx, 401, 408, 429).
+  Medido contra a API real: 25% de falha na 1ª tentativa caiu para 8% com a 2ª.
+- "Seja um parceiro" segue no Formspree — contato pontual, não lista.
+
 ## Inscrição passa a captar a cidade
 
 - `SubscribeForm` ganhou o campo **cidade** abaixo do e-mail, obrigatório, com

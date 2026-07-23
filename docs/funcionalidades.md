@@ -72,13 +72,33 @@ caracteres), descarta envios com o **honeypot** `_gotcha` preenchido e aplica
 As duas rotas compartilham `src/lib/leads.ts` (validação, rate limit por rota,
 envio ao Formspree e escrita em CSV).
 
-Destino do e-mail, nesta ordem:
+Destino, nesta ordem de preferência:
 
-1. **Formspree** — se `FORMSPREE_ENDPOINT` estiver definida, envia `POST` JSON
-   com `email` (vira reply-to), `_subject`, `origem` e `data`. Aceita a URL
-   completa ou só o ID do formulário. Erros são lidos de `errors[].message`.
-2. **Fallback local** — grava em `data/inscricoes.csv` (`email,data,origem`),
-   ignorando duplicados. A pasta `/data` está no `.gitignore`.
+1. **Brevo** — se `BREVO_API_KEY` estiver definida, cadastra o contato via
+   `POST https://api.brevo.com/v3/contacts` com `updateEnabled: true` (reinscrição
+   atualiza em vez de dar erro de duplicado) e a cidade no atributo `CIDADE`.
+   `BREVO_LIST_ID` é opcional. **É o destino recomendado**: sem teto baixo de
+   inscrições e permite disparar a campanha de lançamento para a lista.
+2. **Formspree** — relay de e-mail (`email` vira reply-to, mais `_subject`,
+   `origem` e `data`). Plano grátis limitado a 50 envios/mês.
+3. **Fallback local** — grava em `data/inscricoes.csv`
+   (`email,cidade,origem,data`), ignorando duplicados. `/data` está no
+   `.gitignore`.
+
+> ⚠️ No Brevo, atributos personalizados precisam **existir na conta** antes de
+> serem usados. Se `CIDADE` não estiver criado em Contatos → Configurações →
+> Atributos, o valor é ignorado em silêncio — o contato entra sem a cidade.
+
+O envio ao Brevo faz **uma tentativa extra** em caso de falha de rede, 5xx, 401,
+408 ou 429 (com 400ms de intervalo). O cadastro é idempotente por causa do
+`updateEnabled`, então repetir é seguro. Erros 4xx de dados não são repetidos —
+tentar de novo não mudaria o resultado.
+
+> ⚠️ **Restrição de IP do Brevo.** Em *Segurança → IPs autorizados* é possível
+> bloquear chamadas de IPs não reconhecidos. Com isso ligado, a API responde
+> **401** citando o IP. Em hospedagem serverless o IP de saída é dinâmico, então
+> não há endereço fixo para autorizar: **deixe a restrição desligada** ou
+> hospede em servidor com IP fixo. O retry reduz o estrago, não o elimina.
 
 Configuração passo a passo em [configuracao.md](./configuracao.md).
 

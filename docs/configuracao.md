@@ -18,29 +18,62 @@ Tudo o que muda com frequência está centralizado em **`src/lib/config.ts`**.
 > **Termos de Uso** e **Política de Privacidade** são modais; o texto fica em
 > `src/components/ModalsHost.tsx` (template — revisar juridicamente).
 
-## Formulários — Formspree
+## Formulários
 
-São **dois formulários independentes**, cada um com sua rota e sua variável de
-ambiente. Use **formulários diferentes** no Formspree para não misturar os leads.
+São **dois formulários independentes**, cada um com sua rota e seu destino:
 
-| Formulário | Rota | Variável | Fallback local |
-|------------|------|----------|----------------|
-| "Inscreva-se" (modal em breve) — e-mail e cidade | `POST /api/inscrever` | `FORMSPREE_ENDPOINT` | `data/inscricoes.csv` |
+| Formulário | Rota | Destino | Fallback local |
+|------------|------|---------|----------------|
+| "Inscreva-se" — e-mail e cidade | `POST /api/inscrever` | `BREVO_API_KEY` → `FORMSPREE_ENDPOINT` | `data/inscricoes.csv` |
 | "Seja um parceiro" (Guia Local) | `POST /api/parceiro` | `FORMSPREE_PARCEIRO_ENDPOINT` | `data/parceiros.csv` |
 
-Com a variável **definida**, o envio vai para o Formspree. **Ausente**, grava no
-CSV da raiz (pasta `data/` no `.gitignore`) — útil em dev.
+A inscrição tem **cadeia de destinos**: se `BREVO_API_KEY` estiver definida, vai
+para o Brevo; senão, para o Formspree; sem nenhum dos dois, grava no CSV da raiz
+(pasta `data/` no `.gitignore`) — útil em dev.
 
-### Como configurar
+### Por que Brevo na lista de inscrição
 
-1. Crie uma conta em [formspree.io](https://formspree.io) e **dois formulários**.
-2. Copie o endpoint de cada um em **Forms → seu form → Integration** — algo como
-   `https://formspree.io/f/abcdwxyz`.
-3. Copie `.env.example` para **`.env.local`** na raiz e preencha:
+O Formspree é um **relay de formulário para e-mail**: cada inscrição vira uma
+mensagem na caixa de entrada, e o plano grátis para em **50/mês**. No lançamento
+você teria centenas de e-mails soltos e nenhuma lista para disparar o aviso.
+
+O Brevo é uma plataforma de e-mail marketing: guarda a lista **e** envia a
+campanha. Plano grátis: **até 100 mil contatos** e **300 e-mails/dia**.
+
+> O limite que importa é o de **envio** (300/dia), não o de cadastro. Para
+> avisar 1.500 pessoas, o disparo leva 5 dias — ou paga-se um mês avulso.
+
+O "Seja um parceiro" **continua no Formspree** de propósito: é contato pontual
+de comerciante, não lista de divulgação, e o volume cabe folgado em 50/mês.
+
+### Como configurar o Brevo
+
+1. Crie a conta em [brevo.com](https://www.brevo.com) — o **plano grátis é o
+   padrão**, não precisa selecionar nada. Se cair na tela "Seleção de plano →
+   Checkout", você entrou no funil de upgrade: saia dela e vá para
+   `app.brevo.com`.
+2. Em **Contatos → Configurações → Atributos**, crie o atributo **`CIDADE`**
+   (tipo texto). Sem isso a cidade é descartada em silêncio.
+3. Opcional: crie uma lista em **Contatos → Listas** e anote o **ID** dela.
+4. Gere a chave em **SMTP & API → API Keys**.
+5. Preencha o `.env.local`:
 
 ```bash
-FORMSPREE_ENDPOINT="https://formspree.io/f/abcdwxyz"
+BREVO_API_KEY="xkeysib-..."
+BREVO_LIST_ID="2"           # opcional
+```
+
+### Como configurar o Formspree
+
+1. Crie uma conta em [formspree.io](https://formspree.io) e **um formulário**
+   para os parceiros (mais um para a inscrição, se não usar o Brevo).
+2. Copie o endpoint em **Forms → seu form → Integration** — algo como
+   `https://formspree.io/f/abcdwxyz`.
+3. Preencha o `.env.local`:
+
+```bash
 FORMSPREE_PARCEIRO_ENDPOINT="https://formspree.io/f/wxyzabcd"
+FORMSPREE_ENDPOINT="https://formspree.io/f/abcdwxyz"   # só sem o Brevo
 ```
 
 4. Reinicie o `npm run dev` (variáveis de ambiente só são lidas na inicialização).

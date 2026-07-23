@@ -3,8 +3,10 @@ import {
   EMAIL_RE,
   MAX_EMAIL_LENGTH,
   appendCsv,
+  brevoListId,
   clientIp,
   isRateLimited,
+  sendToBrevo,
   sendToFormspree,
 } from "@/lib/leads";
 
@@ -12,14 +14,17 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /**
- * Recebe as inscrições de e-mail do modal "Chegando muito em breve".
+ * Recebe as inscrições do modal "Chegando muito em breve" (e-mail + cidade).
  *
- * Destino do e-mail (nesta ordem):
- * 1. `FORMSPREE_ENDPOINT` — se definida, envia ao Formspree. Aceita a URL
- *    completa (`https://formspree.io/f/abcdwxyz`) ou só o ID (`abcdwxyz`).
- * 2. Fallback local: grava em `data/inscricoes.csv` na raiz do projeto.
+ * Destino, na ordem de preferência:
+ * 1. `BREVO_API_KEY` (+ `BREVO_LIST_ID`) — cadastra o contato na lista do
+ *    Brevo. É o destino recomendado: guarda a lista **e** permite disparar a
+ *    campanha de lançamento depois, sem teto baixo de inscrições.
+ * 2. `FORMSPREE_ENDPOINT` — relay de e-mail. Aceita a URL completa
+ *    (`https://formspree.io/f/abcdwxyz`) ou só o ID. Plano grátis: 50/mês.
+ * 3. Fallback local: grava em `data/inscricoes.csv` na raiz do projeto.
  *    Funciona em dev e em servidor próprio; em hospedagem serverless (Vercel,
- *    Netlify) o disco é efêmero — nesse caso o Formspree é obrigatório.
+ *    Netlify) o disco é efêmero — lá um dos dois serviços é obrigatório.
  */
 
 const CSV_ARQUIVO = "inscricoes.csv";
@@ -80,9 +85,14 @@ export async function POST(req: Request) {
   }
 
   try {
+    const brevoKey = process.env.BREVO_API_KEY;
     const endpoint = process.env.FORMSPREE_ENDPOINT;
 
-    if (endpoint) {
+    if (brevoKey) {
+      await sendToBrevo(brevoKey, brevoListId(process.env.BREVO_LIST_ID), email, {
+        CIDADE: cidade,
+      });
+    } else if (endpoint) {
       await sendToFormspree(endpoint, {
         email,
         cidade,
