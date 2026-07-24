@@ -2,6 +2,19 @@
 
 Registro de mudanças por commit. As mais recentes no topo.
 
+## Termos e Política em modal de abas (texto real)
+
+- Os links do rodapé agora abrem um único modal com **duas abas** (`LegalModal`):
+  Termos de Uso e Política de Privacidade. O link clicado define a aba inicial.
+- Saiu o texto-template com o aviso "substitua pelo texto jurídico oficial".
+- **Política**: reproduz fielmente a versão oficial publicada em
+  `hdldev123.github.io/politica-privacidade` (LGPD, dados coletados, base legal,
+  transferência internacional, retenção, direitos, DPO).
+- **Termos**: redigidos do zero para os recursos reais do app (rotas, QR Code,
+  conquistas, Guia Local, conteúdo do usuário, foro de Cataguases/MG).
+- Abas acessíveis (padrão ARIA tabs, navegação ←/→) e fixas no topo enquanto o
+  conteúdo rola. `ModalsHost` deixou de carregar os dois modais separados.
+
 ## Brevo como destino das inscrições
 
 - Nova cadeia de destinos em `/api/inscrever`: **Brevo** (`BREVO_API_KEY`) →

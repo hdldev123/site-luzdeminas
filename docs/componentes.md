@@ -34,6 +34,7 @@ está em `src/app/page.tsx`.
 | `Icons.tsx`                | Ícones SVG inline. |
 | `Modal.tsx`                | Diálogo modal acessível e reutilizável. Client. |
 | `ModalsHost.tsx`           | Host único de modais (institucional + "em breve" com captação de e-mail). Client. |
+| `LegalModal.tsx`           | Modal de abas: Termos de Uso e Política de Privacidade. Client. |
 | `ModalTrigger.tsx`         | Botão que abre um modal (`openModal`). Client. |
 | `Carousel.tsx`             | Carrossel coverflow 3D das telas do app. Client. |
 | `BackToTop.tsx`            | Botão flutuante discreto "voltar ao topo". Client. |
