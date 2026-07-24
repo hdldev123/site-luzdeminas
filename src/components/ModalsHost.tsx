@@ -32,7 +32,7 @@ export default function ModalsHost() {
       <Modal
         open={kind === "coming-soon"}
         onClose={close}
-        title="Chegando muito em breve 🎉"
+        title="Chegando muito em breve"
       >
         <p className="leading-relaxed text-ink/80 dark:text-slate-300">
           O app <strong>Luz de Minas</strong> está em desenvolvimento e será

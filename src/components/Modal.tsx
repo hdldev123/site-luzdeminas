@@ -74,7 +74,10 @@ export default function Modal({
         } animate-fade-up`}
       >
         <div className="flex items-start justify-between gap-4 border-b border-black/5 px-6 py-4 dark:border-white/10">
-          <h2 id="modal-title" className="text-lg font-bold dark:text-white">
+          <h2
+            id="modal-title"
+            className="font-display text-xl font-semibold tracking-[-0.01em] dark:text-white"
+          >
             {title}
           </h2>
           <button

@@ -35,9 +35,12 @@ export default function HowItWorks() {
           const Icon = step.icon;
           return (
             <Reveal as="li" key={step.title} delay={i * 120}>
-              <div className="relative h-full rounded-2xl bg-white p-7 shadow-card dark:bg-night-card dark:ring-1 dark:ring-white/10">
-                <span className="absolute right-6 top-6 text-5xl font-black text-brand-green/10 dark:text-brand-leaf/20">
-                  {i + 1}
+              <div className="relative h-full overflow-hidden rounded-2xl bg-white p-7 shadow-card dark:bg-night-card dark:ring-1 dark:ring-white/10">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute right-5 top-4 select-none font-display text-6xl italic leading-none text-brand-green/[0.10] dark:text-brand-leaf/[0.14]"
+                >
+                  0{i + 1}
                 </span>
                 <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-green/10 text-brand-green dark:bg-brand-leaf/10 dark:text-brand-leaf">
                   <Icon className="h-7 w-7" />
@@ -56,7 +59,7 @@ export default function HowItWorks() {
 
       {/* Carrossel de telas do app */}
       <Reveal className="mt-20">
-        <h3 className="text-center text-2xl font-extrabold tracking-tight text-ink dark:text-white sm:text-3xl">
+        <h3 className="text-center font-display text-3xl font-semibold tracking-[-0.01em] text-ink dark:text-white sm:text-4xl">
           Veja o app em ação
         </h3>
         <p className="mx-auto mt-3 max-w-xl text-center text-ink/70 dark:text-slate-300">
