@@ -34,11 +34,19 @@ Mecanismo desacoplado por evento de janela:
   dentro de componentes de servidor.
 
 Tipos de modal (`ModalKind`): `terms`, `privacy`, `coming-soon`, `partner`.
+Os dois primeiros abrem o mesmo `LegalModal` em abas diferentes.
 
 ### Institucional (Termos / Política)
-No footer, **Termos de Uso** e **Política de Privacidade** abrem modais
-(`kind="terms"` / `kind="privacy"`). O conteúdo é um **template** em PT-BR no
-`ModalsHost.tsx` — revise com apoio jurídico antes de publicar.
+No footer, **Termos de Uso** e **Política de Privacidade** abrem o mesmo modal
+com **duas abas** (`LegalModal.tsx`). O link clicado define a aba inicial:
+`kind="terms"` abre em Termos, `kind="privacy"` em Política.
+
+- **Política de Privacidade**: reproduz o texto oficial publicado em
+  `hdldev123.github.io/politica-privacidade` (LGPD, DPO, direitos do titular).
+  Ao atualizar a política, sincronize os dois lugares.
+- **Termos de Uso**: redigidos para os recursos reais do app (rotas, QR Code,
+  conquistas, Guia Local, conteúdo do usuário). **Não substituem revisão
+  jurídica** antes de um uso contratual estrito.
 
 ### Popup "em breve" + inscrição (`kind="coming-soon"`)
 Como o app ainda não foi lançado, os botões de download/exploração abrem um

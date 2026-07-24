@@ -1,11 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+});
+
+// Serifada de display (alto contraste, editorial) para os títulos — dá à marca
+// uma personalidade de revista/obra, em contraste com o corpo em Inter.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-fraunces",
+  style: ["normal", "italic"],
 });
 
 // Troque pela URL real de produção quando publicar.
@@ -96,7 +105,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} dark`}
+      className={`${inter.variable} ${fraunces.variable} dark`}
       suppressHydrationWarning
     >
       <head>

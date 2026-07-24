@@ -15,8 +15,10 @@ Tudo o que muda com frequência está centralizado em **`src/lib/config.ts`**.
 
 > Itens marcados como `<<...>>` são **placeholders** — troque pelos valores reais.
 >
-> **Termos de Uso** e **Política de Privacidade** são modais; o texto fica em
-> `src/components/ModalsHost.tsx` (template — revisar juridicamente).
+> **Termos de Uso** e **Política de Privacidade** abrem um modal de abas; o
+> texto fica em `src/components/LegalModal.tsx`. A Política reproduz a versão
+> oficial publicada em `hdldev123.github.io/politica-privacidade` — mantenha os
+> dois em sincronia.
 
 ## Formulários
 
