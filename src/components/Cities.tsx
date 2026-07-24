@@ -17,16 +17,16 @@ const CITIES = [
   },
   {
     stop: "02",
-    name: "Leopoldina",
+    name: "Leopoldina / Piacatuba",
     src: "/leopoldina.jpg",
     alt: "Centro histórico de Leopoldina",
     text: "Tradição cafeeira, casario histórico e a hospitalidade que define a Zona da Mata.",
   },
   {
     stop: "03",
-    name: "Piacatuba / Itamarati",
+    name: "Itamarati de Minas",
     src: "/itamarati.png",
-    alt: "Distrito de Piacatuba e Itamarati",
+    alt: "Distrito de Itamarati de Minas",
     text: "Distritos de charme interiorano, memória ferroviária e paisagens que pedem uma boa caminhada.",
   },
 ];

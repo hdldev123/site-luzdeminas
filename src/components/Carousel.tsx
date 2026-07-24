@@ -100,6 +100,12 @@ export default function Carousel() {
         if (e.key === "ArrowRight") go(1);
       }}
     >
+      {/* Brilho quente atrás do palco (mesma luz do hero) */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-[46%] -z-10 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-orange/15 blur-3xl"
+      />
+
       {/* Palco 3D — overflow-hidden recorta as "asas" laterais e evita
           rolagem horizontal em telas pequenas */}
       <div
@@ -142,10 +148,16 @@ export default function Carousel() {
         })}
       </div>
 
-      {/* Legenda do slide ativo */}
-      <p className="mt-2 text-center text-sm font-semibold text-ink/70 dark:text-slate-300">
-        {SLIDES[active].caption}
-      </p>
+      {/* Contador + legenda do slide ativo */}
+      <div className="mt-3 flex items-center justify-center gap-3">
+        <span className="font-display text-sm italic tabular-nums text-brand-orange">
+          {String(active + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
+        </span>
+        <span className="h-3 w-px bg-ink/20 dark:bg-white/20" aria-hidden="true" />
+        <p className="text-sm font-semibold text-ink/70 dark:text-slate-300">
+          {SLIDES[active].caption}
+        </p>
+      </div>
 
       {/* Controles */}
       <div className="mt-4 flex items-center justify-center gap-4">
