@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import AccessibilityControls from "./AccessibilityControls";
 import { openModal } from "@/lib/modal";
+import { ArrowRightIcon } from "./Icons";
 
 const NAV = [
   { href: "#como-funciona", label: "Como funciona" },
@@ -27,8 +28,8 @@ export default function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 shadow-card backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:bg-night/90 dark:supports-[backdrop-filter]:bg-night/75"
-          : "bg-transparent"
+          ? "border-b border-black/5 bg-white/85 backdrop-blur-md supports-[backdrop-filter]:bg-white/70 dark:border-white/10 dark:bg-night/85 dark:supports-[backdrop-filter]:bg-night/70"
+          : "border-b border-transparent bg-transparent"
       }`}
     >
       <div className="container-page flex min-h-16 items-center justify-between gap-4 py-2">
@@ -51,11 +52,16 @@ export default function Header() {
             <a
               key={item.href}
               href={item.href}
-              className={`text-sm font-semibold transition hover:text-brand-orange ${
+              className={`group relative text-sm font-semibold transition hover:text-brand-orange ${
                 scrolled ? "text-ink dark:text-slate-200" : "text-white"
               }`}
             >
               {item.label}
+              {/* filete que cresce da esquerda no hover */}
+              <span
+                aria-hidden="true"
+                className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-brand-orange transition-transform duration-300 group-hover:scale-x-100"
+              />
             </a>
           ))}
         </nav>
@@ -72,9 +78,14 @@ export default function Header() {
             type="button"
             onClick={() => openModal("coming-soon")}
             aria-haspopup="dialog"
-            className="hidden rounded-full bg-brand-orange px-5 py-2.5 text-sm font-bold text-white shadow-soft transition hover:bg-brand-orange-dark sm:inline-block"
+            className="group relative hidden items-center gap-2 overflow-hidden rounded-full bg-brand-orange px-5 py-2.5 text-sm font-bold text-white shadow-soft transition hover:bg-brand-orange-dark sm:inline-flex"
           >
-            Inscreva-se
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full"
+            />
+            <span className="relative">Inscreva-se</span>
+            <ArrowRightIcon className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
           </button>
 
           <button
