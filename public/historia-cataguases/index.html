@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Uma jornada interativa pela eletrificação, indústria, cultura modernista e patrimônio de Cataguases, Minas Gerais.">
+  <meta name="theme-color" content="#f2eddf">
+  <title>Cataguases — Luz, modernismo e patrimônio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23171711'/%3E%3Cpath d='M8 32A24 24 0 0 1 32 8v24H8Z' fill='%23f0bc35'/%3E%3Cpath d='M32 32h24a24 24 0 0 1-24 24V32Z' fill='%23e3432f'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260724">
+  <script src="script.js?v=20260724" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="#inicio" aria-label="Cataguases, voltar ao início">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M4 20A16 16 0 0 1 20 4v16H4Z" fill="currentColor"/>
+        <path d="M20 20h16a16 16 0 0 1-16 16V20Z" fill="currentColor" opacity=".5"/>
+      </svg>
+      <span>Cataguases<small>memória em movimento</small></span>
+    </a>
+
+    <button class="menu-toggle icon-button" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu">
+      <span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Navegação principal">
+      <a href="#luz">Luz</a>
+      <a href="#industria">Indústria</a>
+      <a href="#cultura">Cultura</a>
+      <a href="#patrimonio">Patrimônio</a>
+      <a href="#presente">Presente</a>
+    </nav>
+
+    <button class="theme-toggle icon-button" type="button" aria-label="Ativar tema escuro" title="Alternar tema">
+      <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.3A9 9 0 1 1 8.7 4 7 7 0 0 0 20 15.3Z"/></svg>
+    </button>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-image" role="img" aria-label="Vista panorâmica de Cataguases entre os morros da Zona da Mata"></div>
+      <div class="hero-shape shape-one" aria-hidden="true"></div>
+      <div class="hero-shape shape-two" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow light-text">Zona da Mata · Minas Gerais</p>
+        <h1 id="hero-title">Uma cidade que<br><em>acendeu</em> ideias.</h1>
+        <p class="hero-lede">Da energia que atravessou municípios à vanguarda que atravessou o Brasil: conheça os muitos fios da história de Cataguases.</p>
+        <a class="button button-light" href="#prologo">Começar a jornada <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-index" aria-hidden="true"><span>21°23′ S</span><span>42°42′ O</span><span>01 — 06</span></div>
+    </section>
+
+    <section class="prologue section" id="prologo" aria-labelledby="prologue-title">
+      <div class="section-kicker reveal"><span>Prólogo</span><span>Leitura aproximada: 8 min</span></div>
+      <div class="prologue-grid">
+        <div class="sticky-title reveal">
+          <p class="eyebrow">A síntese</p>
+          <h2 id="prologue-title">Não foi a primeira lâmpada.<br>Foi algo <em>maior.</em></h2>
+        </div>
+        <div class="prologue-copy reveal">
+          <p class="lead">O pioneirismo de Cataguases não está em ter sido a primeira cidade brasileira iluminada. Está em ter criado, no interior, um sistema regional, empresarial e duradouro de eletrificação.</p>
+          <p>Em 1908, a Usina Maurício tornou-se a primeira hidrelétrica brasileira reconhecida por fornecer energia a mais de uma cidade. A luz impulsionou fábricas, redesenhou o cotidiano e ajudou a criar as condições para uma das experiências modernistas mais singulares do país.</p>
+          <aside class="fact-check" aria-label="Nota de precisão histórica">
+            <span class="fact-icon" aria-hidden="true">!</span>
+            <div><strong>Precisão importa</strong><p>Campos dos Goytacazes, Diamantina, Porto Alegre e Juiz de Fora tiveram marcos elétricos anteriores. Cataguases foi pioneira sobretudo na eletrificação <em>intermunicipal</em>.</p></div>
+          </aside>
+        </div>
+      </div>
+
+      <nav class="pillars" aria-label="Três dimensões da história">
+        <a class="pillar reveal" href="#luz"><span>01</span><h3>Energia</h3><p>Uma rede regional nascida no interior.</p><i aria-hidden="true">↘</i></a>
+        <a class="pillar reveal" href="#cultura"><span>02</span><h3>Cultura</h3><p>Literatura e cinema antes da arquitetura.</p><i aria-hidden="true">↘</i></a>
+        <a class="pillar reveal" href="#patrimonio"><span>03</span><h3>Patrimônio</h3><p>Uma cidade inteira como obra moderna.</p><i aria-hidden="true">↘</i></a>
+      </nav>
+    </section>
+
+    <section class="chapter chapter-light" id="luz" aria-labelledby="light-title">
+      <div class="chapter-number" aria-hidden="true">01</div>
+      <div class="section chapter-intro">
+        <div class="section-kicker light-text reveal"><span>Capítulo 01</span><span>1905 — 1918</span></div>
+        <p class="eyebrow light-text reveal">Eletrificação</p>
+        <h2 id="light-title" class="reveal">Quando a noite<br><em>mudou de cor.</em></h2>
+        <p class="chapter-lede reveal">Às 20 horas de 3 de julho de 1908, 164 pontos de luz transformaram a percepção da cidade.</p>
+      </div>
+
+      <div class="night-experience" data-night-scene>
+        <div class="night-sky" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="hill hill-back" aria-hidden="true"></div>
+        <div class="hill hill-front" aria-hidden="true"></div>
+        <div class="city-silhouette" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="lamp" aria-hidden="true"><span class="lamp-glow"></span><span class="lamp-head"></span><span class="lamp-post"></span></div>
+        <div class="night-copy">
+          <p><strong>160</strong> lâmpadas incandescentes de 32 velas</p>
+          <p><strong>04</strong> lâmpadas de arco voltaico de 600 velas</p>
+        </div>
+        <button class="switch" type="button" aria-pressed="false"><span></span><strong>Acender Cataguases</strong></button>
+        <aside class="light-route" aria-labelledby="light-route-title">
+          <div class="route-heading">
+            <strong id="light-route-title">Rota Luz de Minas</strong>
+            <span class="route-state">Acenda a cidade para ativar a rota</span>
+          </div>
+          <div class="route-track">
+            <span class="route-energy" aria-hidden="true"></span>
+            <span class="route-stop route-origin"><i aria-hidden="true"></i><b>Cataguases</b></span>
+            <a class="route-stop route-step-one" href="https://www.google.com/maps/dir/?api=1&amp;origin=Cataguases%2C%20MG&amp;destination=Piacatuba%2C%20Leopoldina%20MG&amp;waypoints=Leopoldina%2C%20MG" target="_blank" rel="noopener"><i aria-hidden="true"></i><b>Leopoldina</b><span>Piacatuba · distrito</span><small>Traçar rota ↗</small></a>
+            <a class="route-stop route-step-two" href="https://www.google.com/maps/dir/?api=1&amp;origin=Cataguases%2C%20MG&amp;destination=Itamarati%20de%20Minas%2C%20MG&amp;waypoints=Leopoldina%2C%20MG%7CPiacatuba%2C%20Leopoldina%20MG" target="_blank" rel="noopener"><i aria-hidden="true"></i><b>Itamarati de Minas</b><small>Traçar rota ↗</small></a>
+          </div>
+        </aside>
+        <p class="scene-status" role="status" aria-live="polite">A cidade aguarda a chegada da luz.</p>
+      </div>
+
+      <section class="route-guide" data-route-guide aria-labelledby="route-guide-title" aria-hidden="true" inert>
+        <div class="route-guide-inner">
+          <div class="route-summary">
+            <div class="route-summary-copy">
+              <p class="eyebrow light-text">A luz vira caminho</p>
+              <h3 id="route-guide-title">Três territórios.<br><em>Uma história conectada.</em></h3>
+              <p>Uma travessia entre arte, memória, paisagem e natureza pela Zona da Mata Mineira.</p>
+              <a class="route-main-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=Cataguases%2C%20MG&amp;destination=Itamarati%20de%20Minas%2C%20MG&amp;waypoints=Leopoldina%2C%20MG%7CPiacatuba%2C%20Leopoldina%20MG" target="_blank" rel="noopener">Traçar roteiro completo <span aria-hidden="true">↗</span></a>
+            </div>
+            <dl class="route-facts">
+              <div><dt>Extensão</dt><dd>~50 km</dd></div>
+              <div><dt>De carro</dt><dd>~2 horas</dd></div>
+              <div><dt>Imersão</dt><dd>1–2 dias</dd></div>
+            </dl>
+          </div>
+
+          <div class="route-destinations">
+            <article class="destination destination-cataguases">
+              <span class="destination-index">01 · Partida</span>
+              <p class="destination-theme">Cultura e modernismo</p>
+              <h4>Cataguases</h4>
+              <p>O ponto onde eletrificação, cinema, literatura e arquitetura moderna transformaram uma cidade do interior em referência nacional.</p>
+              <ul><li>Memorial Humberto Mauro</li><li>Acervo modernista</li><li>Polo Audiovisual</li></ul>
+              <a href="#patrimonio">Explorar o patrimônio <span aria-hidden="true">↓</span></a>
+            </article>
+            <article class="destination destination-leopoldina">
+              <span class="destination-index">02 · Encontro</span>
+              <p class="destination-theme">Patrimônio e memória</p>
+              <h4>Leopoldina <small>com Piacatuba</small></h4>
+              <p>A Princesa Mineira integra seu distrito de Piacatuba ao roteiro e aproxima patrimônio religioso, memória e paisagem rural.</p>
+              <ul><li>Catedral de São Sebastião</li><li>Casa da Memória</li><li>Distrito de Piacatuba</li></ul>
+              <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Cataguases%2C%20MG&amp;destination=Piacatuba%2C%20Leopoldina%20MG&amp;waypoints=Leopoldina%2C%20MG" target="_blank" rel="noopener">Traçar este trecho <span aria-hidden="true">↗</span></a>
+            </article>
+            <article class="destination destination-itamarati">
+              <span class="destination-index">03 · Natureza</span>
+              <p class="destination-theme">Ecologia e aventura</p>
+              <h4>Itamarati de Minas</h4>
+              <p>A RPPN Usina Maurício protege 303,75 hectares de Mata Atlântica e convida a uma experiência de trilhas e observação de aves.</p>
+              <ul><li>RPPN Usina Maurício</li><li>Trilhas ecológicas</li><li>Observação de aves</li></ul>
+              <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Piacatuba%2C%20Leopoldina%20MG&amp;destination=Itamarati%20de%20Minas%2C%20MG" target="_blank" rel="noopener">Traçar este trecho <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+
+          <p class="route-source">Informações da rota: <a href="https://www.panrotas.com.br/mercado/destinos/2025/03/energisa-lanca-rota-caminhos-da-zona-da-mata-para-fomentar-turismo-de-minas-gerais_215059.html" target="_blank" rel="noopener">Rota Caminhos da Zona da Mata, 2025 ↗</a></p>
+        </div>
+      </section>
+
+      <div class="section timeline-section">
+        <div class="timeline-heading reveal">
+          <div><p class="eyebrow light-text">Percorra os marcos</p><h3>Uma corrente<br>através do tempo</h3></div>
+          <div class="timeline-controls">
+            <button class="round-button timeline-prev" type="button" aria-label="Marco anterior">←</button>
+            <button class="round-button timeline-next" type="button" aria-label="Próximo marco">→</button>
+          </div>
+        </div>
+        <div class="timeline" tabindex="0" aria-label="Linha do tempo histórica de Cataguases">
+          <ol class="timeline-track"></ol>
+        </div>
+        <div class="timeline-detail" aria-live="polite">
+          <span class="timeline-detail-year">1905</span>
+          <div><h4>Nasce a Companhia</h4><p>A Companhia Força e Luz Cataguazes-Leopoldina é constituída por José Monteiro Ribeiro Junqueira, João Duarte Ferreira e Norberto Custódio Ferreira.</p></div>
+        </div>
+      </div>
+
+      <section class="network section reveal" aria-labelledby="network-title">
+        <div class="network-copy"><p class="eyebrow light-text">Julho de 1908</p><h3 id="network-title">A luz não parou<br>nos limites da cidade.</h3><p>A rede inaugurou um modelo regional de distribuição e alcançou quatro cidades no mesmo mês.</p></div>
+        <figure class="network-map" data-network-map data-active="mauricio">
+          <figcaption class="network-map-toolbar">
+            <div><span>Rede intermunicipal · 1908</span><strong>Energia em trânsito</strong></div>
+            <p id="network-map-instruction">Selecione um ponto luminoso para percorrer a expansão.</p>
+            <span class="network-live"><i aria-hidden="true"></i> Rede energizada</span>
+          </figcaption>
+
+          <div class="network-canvas" role="group" aria-label="Pontos da rede elétrica regional" aria-describedby="network-map-instruction">
+            <svg viewBox="0 0 720 500" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="network-grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32"/></pattern>
+                <linearGradient id="river-light" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2d617c"/><stop offset=".5" stop-color="#6ca0b5"/><stop offset="1" stop-color="#2d617c"/></linearGradient>
+                <radialGradient id="source-light"><stop offset="0" stop-color="#f0bc35" stop-opacity=".32"/><stop offset="1" stop-color="#f0bc35" stop-opacity="0"/></radialGradient>
+              </defs>
+              <rect class="network-grid" width="720" height="500" fill="url(#network-grid)"/>
+              <circle class="network-source-light" cx="300" cy="260" r="150" fill="url(#source-light)"/>
+              <path class="river" d="M28 435C137 327 187 396 273 284S432 291 487 189 594 73 692 52"/>
+              <path class="river-current" d="M28 435C137 327 187 396 273 284S432 291 487 189 594 73 692 52"/>
+              <g class="network-route-base">
+                <path d="M300 260C260 235 222 181 180 135"/>
+                <path d="M300 260C389 226 472 165 565 118"/>
+                <path d="M300 260C390 277 478 315 575 340"/>
+                <path d="M300 260C255 295 217 340 175 380"/>
+              </g>
+              <g class="network-routes">
+                <path class="network-line" data-route="cataguases" pathLength="1" d="M300 260C260 235 222 181 180 135"/>
+                <path class="network-line" data-route="sao-joao" pathLength="1" d="M300 260C389 226 472 165 565 118"/>
+                <path class="network-line" data-route="leopoldina" pathLength="1" d="M300 260C390 277 478 315 575 340"/>
+                <path class="network-line" data-route="rio-novo" pathLength="1" d="M300 260C255 295 217 340 175 380"/>
+              </g>
+              <g class="network-contours">
+                <path d="M54 92C143 25 240 34 318 72"/><path d="M455 430C535 391 633 397 695 445"/>
+              </g>
+              <g class="network-compass" transform="translate(674 438)"><path d="M0 30V0l-5 8M0 0l5 8"/><text x="0" y="44">N</text></g>
+            </svg>
+
+            <button class="network-node network-node-central" type="button" data-network-stop="mauricio" aria-pressed="true" aria-label="Usina Maurício, origem da rede, 800 quilowatts">
+              <span class="network-node-marker" aria-hidden="true"></span><span class="network-node-copy"><strong>Usina Maurício</strong><small>800 kW · origem</small></span>
+            </button>
+            <button class="network-node" type="button" data-network-stop="cataguases" aria-pressed="false" aria-label="Cataguases, eletrificada em 3 de julho de 1908">
+              <span class="network-node-marker" aria-hidden="true"></span><span class="network-node-copy"><strong>Cataguases</strong><small>03 JUL</small></span>
+            </button>
+            <button class="network-node network-node-label-left" type="button" data-network-stop="sao-joao" aria-pressed="false" aria-label="São João Nepomuceno, eletrificada em 7 de julho de 1908">
+              <span class="network-node-marker" aria-hidden="true"></span><span class="network-node-copy"><strong>São João Nepomuceno</strong><small>07 JUL</small></span>
+            </button>
+            <button class="network-node network-node-label-left" type="button" data-network-stop="leopoldina" aria-pressed="false" aria-label="Leopoldina, eletrificada em 16 de julho de 1908">
+              <span class="network-node-marker" aria-hidden="true"></span><span class="network-node-copy"><strong>Leopoldina</strong><small>16 JUL</small></span>
+            </button>
+            <button class="network-node" type="button" data-network-stop="rio-novo" aria-pressed="false" aria-label="Rio Novo, eletrificada em 23 de julho de 1908">
+              <span class="network-node-marker" aria-hidden="true"></span><span class="network-node-copy"><strong>Rio Novo</strong><small>23 JUL</small></span>
+            </button>
+          </div>
+
+          <div class="network-detail">
+            <div class="network-detail-copy" aria-live="polite" aria-atomic="true">
+              <span class="network-detail-index">00 · Fonte da energia</span>
+              <h4>Usina Maurício</h4>
+              <p>Das águas para a região: aqui começa a corrente que conectou cidades da Zona da Mata em uma mesma rede.</p>
+            </div>
+            <div class="network-detail-side">
+              <div class="network-detail-metric"><span>Potência inicial</span><strong>800 kW</strong></div>
+              <div class="network-controls" role="group" aria-label="Navegar pelos pontos da rede">
+                <button class="round-button network-prev" type="button" aria-label="Ponto anterior">←</button>
+                <span><b>1</b> / 5</span>
+                <button class="round-button network-next" type="button" aria-label="Próximo ponto">→</button>
+              </div>
+            </div>
+          </div>
+        </figure>
+      </section>
+    </section>
+
+    <section class="chapter industry section" id="industria" aria-labelledby="industry-title">
+      <div class="section-kicker reveal"><span>Capítulo 02</span><span>Trabalho e cidade</span></div>
+      <div class="split-heading reveal">
+        <div><p class="eyebrow">Industrialização</p><h2 id="industry-title">Da força das águas<br>à força do <em>trabalho.</em></h2></div>
+        <p>A eletricidade encontrou uma cidade em transição. A economia ligada ao café ganhava uma base industrial, sobretudo têxtil.</p>
+      </div>
+
+      <figure class="photo-feature reveal">
+        <img src="assets/ponte-iluminada.webp" alt="Ponte metálica de Cataguases iluminada à noite" width="1920" height="1200" loading="lazy">
+        <figcaption><span>Ponte metálica, inaugurada em 1915</span><span>Foto: Paulo César Rodrigues · CC BY-SA 4.0</span></figcaption>
+      </figure>
+
+      <div class="impact-grid">
+        <article class="impact-card reveal"><span class="impact-year">1906</span><h3>Fiação e tecelagem</h3><p>A fábrica, inicialmente movida a vapor, antecedeu em dois anos a operação da companhia elétrica e marcou o início da industrialização local.</p></article>
+        <article class="impact-card reveal"><span class="impact-year">1929</span><h3>Doze cidades</h3><p>Uma notícia do jornal <em>Cataguases</em>, citada em pesquisa acadêmica, já registrava doze municípios atendidos pela companhia.</p></article>
+        <article class="impact-card accent-card reveal"><span class="impact-icon" aria-hidden="true">↗</span><h3>Uma nova rotina</h3><p>Ruas, casas, comércio e fábricas estenderam seus horários. Pessoas, capital e ideias passaram a circular com mais intensidade.</p></article>
+      </div>
+
+      <blockquote class="pull-quote reveal"><p>“A energia criou condições materiais; a industrialização, condições sociais; e o mecenato, condições institucionais.”</p></blockquote>
+
+      <div class="counterpoint reveal">
+        <div class="counterpoint-index">O outro lado</div>
+        <div><h3>A modernidade não chegou igual para todos.</h3><p>O êxodo rural e as vilas operárias fizeram parte da expansão urbana. Nas décadas de 1930 e 1940, políticas higienistas e demolições também revelaram uma modernização seletiva, com controle do espaço e exclusão de grupos populares.</p><p>Contar Cataguases por inteiro exige colocar o trabalho, os bairros e as experiências cotidianas ao lado das obras consagradas.</p></div>
+      </div>
+    </section>
+
+    <section class="chapter culture" id="cultura" aria-labelledby="culture-title">
+      <div class="culture-heading section">
+        <div class="section-kicker light-text reveal"><span>Capítulo 03</span><span>1920 — 1960</span></div>
+        <p class="eyebrow light-text reveal">Cultura modernista</p>
+        <h2 id="culture-title" class="reveal">Antes de ser concreto,<br>a vanguarda foi <em>palavra</em><br>e movimento.</h2>
+      </div>
+
+      <div class="culture-tabs section reveal">
+        <div class="tab-list" role="tablist" aria-label="Expressões culturais">
+          <button type="button" id="tab-literatura" role="tab" aria-selected="true" aria-controls="panel-literatura" tabindex="0">Literatura <span>01</span></button>
+          <button type="button" id="tab-cinema" role="tab" aria-selected="false" aria-controls="panel-cinema" tabindex="-1">Cinema <span>02</span></button>
+          <button type="button" id="tab-arquitetura" role="tab" aria-selected="false" aria-controls="panel-arquitetura" tabindex="-1">Arquitetura <span>03</span></button>
+        </div>
+
+        <div class="tab-panel" id="panel-literatura" role="tabpanel" aria-labelledby="tab-literatura">
+          <div class="culture-art magazine-art" aria-hidden="true"><span>VERDE</span><i>revista de arte<br>e cultura</i><b>1927</b></div>
+          <div class="culture-copy"><span class="culture-date">Set. 1927 — Mai. 1929</span><h3>Uma revista do interior surpreende o Brasil.</h3><p>A <em>Revista Verde</em> conectou jovens cataguasenses aos principais nomes do modernismo. Em suas páginas, a cidade deixou de ser margem e passou a produzir vanguarda.</p><blockquote>“Todo o Brasil está surpreso: existe Cataguazes!”<cite>Ribeiro Couto, 1928</cite></blockquote></div>
+        </div>
+
+        <div class="tab-panel" id="panel-cinema" role="tabpanel" aria-labelledby="tab-cinema" hidden>
+          <div class="culture-art film-art" aria-hidden="true"><span></span><span></span><span></span><b>24<br>quadros</b></div>
+          <div class="culture-copy"><span class="culture-date">Década de 1920</span><h3>Humberto Mauro transforma paisagem em cinema.</h3><p>O Ciclo de Cinema de Cataguases projetou Humberto Mauro como pioneiro da linguagem cinematográfica brasileira. A cidade aprendeu a se olhar em movimento antes de se desenhar em concreto.</p><blockquote>Literatura, cinema e arquitetura não são episódios isolados: formam uma continuidade cultural.</blockquote></div>
+        </div>
+
+        <div class="tab-panel" id="panel-arquitetura" role="tabpanel" aria-labelledby="tab-arquitetura" hidden>
+          <div class="culture-art architecture-art" aria-hidden="true"><span></span><span></span><span></span><b>FORMA<br>+ ARTE</b></div>
+          <div class="culture-copy"><span class="culture-date">1941 — 1960</span><h3>A cidade se torna uma obra coletiva.</h3><p>Arquitetura, jardins, murais, mobiliário e escultura passaram a compartilhar a mesma linguagem. Niemeyer, Burle Marx, Portinari, Tenreiro e artistas locais encontraram em Cataguases um raro laboratório.</p><blockquote>Em 1952, a revista francesa <em>L’Architecture d’Aujourd’hui</em> chamou o conjunto de “phénomène Cataguazes”.</blockquote></div>
+        </div>
+      </div>
+
+      <section class="names-marquee" aria-label="Artistas ligados a Cataguases"><div><span>Oscar Niemeyer</span><span>Roberto Burle Marx</span><span>Cândido Portinari</span><span>Humberto Mauro</span><span>Djanira</span><span>Paulo Werneck</span><span>Joaquim Tenreiro</span><span>Jan Zach</span></div></section>
+    </section>
+
+    <section class="chapter heritage section" id="patrimonio" aria-labelledby="heritage-title">
+      <div class="section-kicker reveal"><span>Capítulo 04</span><span>Um museu a céu aberto</span></div>
+      <div class="split-heading reveal">
+        <div><p class="eyebrow">Arquitetura e arte</p><h2 id="heritage-title">A modernidade<br>virou <em>paisagem.</em></h2></div>
+        <p>Não são apenas edifícios notáveis. É um ecossistema que reúne espaço, jardim, mural, escultura, mobiliário e vida urbana.</p>
+      </div>
+
+      <div class="heritage-grid">
+        <article class="place-card place-wide reveal" data-place="colegio">
+          <img src="assets/colegio-cataguases.webp" alt="Fachada do Colégio Cataguases" width="1920" height="1200" loading="lazy">
+          <div class="place-overlay"><span>1945—1949</span><h3>Colégio Cataguases</h3><p>Oscar Niemeyer + Roberto Burle Marx</p><button type="button" class="round-button place-open" aria-label="Conhecer o Colégio Cataguases">↗</button></div>
+        </article>
+        <article class="place-card place-tall reveal" data-place="residencia">
+          <img src="assets/residencia-moderna.webp" alt="Residência modernista na Avenida Humberto Mauro" width="1920" height="1200" loading="lazy">
+          <div class="place-overlay"><span>1941</span><h3>Residência Francisco Inácio Peixoto</h3><p>Oscar Niemeyer + Roberto Burle Marx</p><button type="button" class="round-button place-open" aria-label="Conhecer a residência Francisco Inácio Peixoto">↗</button></div>
+        </article>
+        <article class="place-card reveal" data-place="hotel">
+          <img src="assets/hotel-cataguases.webp" alt="Fachada principal do Hotel Cataguases" width="1920" height="1200" loading="lazy">
+          <div class="place-overlay"><span>Meados do séc. XX</span><h3>Hotel Cataguases</h3><p>Aldary Toledo + Gilberto Lemos</p><button type="button" class="round-button place-open" aria-label="Conhecer o Hotel Cataguases">↗</button></div>
+        </article>
+        <article class="place-card reveal" data-place="santuario">
+          <img src="assets/santa-rita.webp" alt="Torre do Santuário de Santa Rita de Cássia, em Cataguases" width="1200" height="900" loading="lazy">
+          <div class="place-overlay"><span>1944—1968</span><h3>Santuário Santa Rita</h3><p>Edgar Guimarães do Vale</p><button type="button" class="round-button place-open" aria-label="Conhecer o Santuário de Santa Rita">↗</button></div>
+        </article>
+        <article class="place-card text-place reveal" data-place="cine">
+          <div class="text-place-art" aria-hidden="true"><span>CINE</span><span>EDGARD</span></div>
+          <div class="place-overlay"><span>1946—1953</span><h3>Cine-Teatro Edgard</h3><p>Aldary Toledo + Carlos Leão</p><button type="button" class="round-button place-open" aria-label="Conhecer o Cine-Teatro Edgard">↗</button></div>
+        </article>
+        <article class="place-card text-place chateau-card reveal" data-place="chacara">
+          <div class="text-place-art" aria-hidden="true"><span>1888</span><span>ANTES DO MODERNO</span></div>
+          <div class="place-overlay"><span>Ciclo do café</span><h3>Chácara Dona Catarina</h3><p>Chalé romântico oitocentista</p><button type="button" class="round-button place-open" aria-label="Conhecer a Chácara Dona Catarina">↗</button></div>
+        </article>
+      </div>
+
+      <div class="heritage-statement reveal">
+        <span>1994</span>
+        <div><p class="eyebrow">Tombamento federal</p><h3>O IPHAN reconhece Cataguases como um <em>“lugar da modernidade”.</em></h3><p>Um perímetro urbano e 16 bens de destaque, com seus elementos móveis e integrados, passam a ser protegidos como uma totalidade cultural.</p></div>
+      </div>
+    </section>
+
+    <section class="chapter present" id="presente" aria-labelledby="present-title">
+      <div class="present-photo" role="img" aria-label="Vista contemporânea de Cataguases"></div>
+      <div class="section present-content">
+        <div class="section-kicker light-text reveal"><span>Capítulo 05</span><span>Patrimônio vivo</span></div>
+        <p class="eyebrow light-text reveal">Cataguases hoje</p>
+        <h2 id="present-title" class="reveal">Preservar não é<br><em>congelar.</em> É manter<br>em movimento.</h2>
+      </div>
+    </section>
+
+    <section class="today section" aria-label="Cultura e preservação hoje">
+      <div class="today-grid">
+        <article class="today-story reveal"><span>Rota cultural · 2026</span><h3>Moderna e Eterna</h3><p>A rota municipal conecta turismo, educação e patrimônio com visitas mediadas e sinalização de pontos históricos, culturais e naturais.</p></article>
+        <article class="today-story reveal"><span>Festival · 2025</span><h3>70 mil pessoas</h3><p>O Festival Modernista reuniu cerca de 70 mil pessoas em três dias, mostrando a capacidade da memória local de mobilizar o presente.</p></article>
+        <article class="today-story reveal"><span>Preservação</span><h3>Restaurar e reocupar</h3><p>O Colégio Cataguases foi selecionado no PAC, enquanto o Cine Edgard entrou em processo público de restauração e requalificação.</p></article>
+      </div>
+
+      <section class="visitation reveal" aria-labelledby="visitation-title">
+        <div><p class="eyebrow">Alcance cultural</p><h3 id="visitation-title">Públicos registrados</h3><p>Ordens de grandeza, não uma série comparável: equipamentos anuais de 2017 e um festival de três dias em 2025.</p></div>
+        <div class="bar-chart" role="img" aria-label="Museu Energisa 3.636 visitantes em 2017; Centro Cultural Humberto Mauro 16.120 em 2017; Festival Modernista 70 mil em 2025">
+          <div class="bar-row bar-5"><span>Museu Energisa <small>2017</small></span><i></i><strong>3.636</strong></div>
+          <div class="bar-row bar-23"><span>Centro Cultural <small>2017</small></span><i></i><strong>16.120</strong></div>
+          <div class="bar-row bar-100"><span>Festival Modernista <small>2025</small></span><i></i><strong>~70 mil</strong></div>
+        </div>
+      </section>
+
+      <div class="future-question reveal">
+        <p class="eyebrow">O próximo capítulo</p>
+        <h2>Como modernizar<br>sem <em>apagar?</em></h2>
+        <div><p>Gestão burocrática do tombamento, financiamento contínuo, acessibilidade turística e inclusão da memória operária seguem como desafios.</p><p>A nova infraestrutura urbana, incluindo LED em 7.871 pontos, precisa dialogar com a paisagem histórica que tornou a cidade singular.</p></div>
+      </div>
+    </section>
+
+    <section class="sources section" id="fontes" aria-labelledby="sources-title">
+      <div class="section-kicker"><span>Epílogo</span><span>História responsável</span></div>
+      <div class="sources-heading"><div><p class="eyebrow">Fontes e método</p><h2 id="sources-title">Toda memória pede<br><em>cuidado.</em></h2></div><p>Esta experiência foi construída a partir do estudo disponível nesta pasta, que cruza memória setorial, documentos públicos, produção acadêmica e fontes locais.</p></div>
+
+      <div class="accordion">
+        <details><summary><span>01</span>Fontes essenciais<i aria-hidden="true">+</i></summary><div><ul><li><a href="https://memoriadaeletricidade.com.br/acervo/1375/energisa-minas-gerais" target="_blank" rel="noopener">Memória da Eletricidade — Energisa Minas Gerais</a></li><li><a href="https://www.gov.br/iphan/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/atas-do-conselho-consultivo-do-patrimonio-cultural/de-1991-ate-2000/7a-reuniao-ordinaria-do-conselho-consultivo-07-12-1994/%40%40display-file/file" target="_blank" rel="noopener">IPHAN — Ata do Conselho Consultivo de 1994</a></li><li><a href="https://vitruvius.com.br/revistas/read/arquitextos/05.054/527" target="_blank" rel="noopener">Vitruvius — Patrimônio modernista em Cataguases</a></li><li><a href="https://blog.bbm.usp.br/2018/verde-a-revista-modernista-do-interior-mineiro/" target="_blank" rel="noopener">BBM/USP — Revista Verde</a></li></ul></div></details>
+        <details><summary><span>02</span>Lacunas e incertezas<i aria-hidden="true">+</i></summary><div><p>O ato municipal original da concessão elétrica não foi localizado integralmente em fonte primária aberta. Há variações para a conclusão do Colégio Cataguases, tratada aqui como 1945–1949. Em alguns bens, as fontes não distinguem de forma inequívoca tombamento isolado e proteção pelo conjunto urbano.</p></div></details>
+        <details><summary><span>03</span>Créditos das imagens<i aria-hidden="true">+</i></summary><div><p>Imagens obtidas no Wikimedia Commons. Vista de Cataguases: Paulo César Rodrigues, CC BY-SA 3.0. Ponte metálica, Colégio Cataguases, Hotel Cataguases, residência na Avenida Humberto Mauro e Santa Rita: seus respectivos autores, licenças CC BY-SA 2.0 ou 4.0. Consulte os metadados completos nos links do projeto-fonte.</p></div></details>
+      </div>
+
+      <a class="document-link" href="https://www.gov.br/iphan/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/atas-do-conselho-consultivo-do-patrimonio-cultural/de-1991-ate-2000/7a-reuniao-ordinaria-do-conselho-consultivo-07-12-1994/%40%40display-file/file" target="_blank" rel="noopener">
+        <span><small>Fonte pública · IPHAN</small>Consulte o tombamento de 1994</span><i aria-hidden="true">↗</i>
+      </a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-mark" aria-hidden="true"><span>C</span><span>G</span></div>
+    <div><p>Cataguases entre luz,<br>modernismo e patrimônio.</p><small>Experiência digital baseada nos documentos desta pasta · 2026</small></div>
+    <a href="#inicio">Voltar ao início ↑</a>
+  </footer>
+
+  <dialog class="place-dialog" aria-labelledby="dialog-title">
+    <button class="dialog-close icon-button" type="button" aria-label="Fechar detalhes">×</button>
+    <div class="dialog-art" aria-hidden="true"><span></span><i></i></div>
+    <div class="dialog-content"><p class="eyebrow" id="dialog-year"></p><h2 id="dialog-title">Detalhes do patrimônio</h2><p id="dialog-description"></p><dl id="dialog-facts"></dl></div>
+  </dialog>
+
+  <noscript><div class="noscript">Ative o JavaScript para explorar a linha do tempo, os capítulos culturais e os detalhes do patrimônio.</div></noscript>
+</body>
+</html>

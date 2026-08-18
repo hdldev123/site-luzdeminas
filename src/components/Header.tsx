@@ -13,11 +13,7 @@ const NAV: NavItem[] = [
   { href: "#funcionalidades", label: "Funcionalidades" },
   { href: "#cidades", label: "Cidades" },
   { href: "#guia-local", label: "Guia Local" },
-  {
-    href: "https://matheusmeigre.github.io/historia-cataguases/",
-    label: "História",
-    external: true,
-  },
+  { href: "/historia", label: "História" },
 ];
 
 export default function Header() {
