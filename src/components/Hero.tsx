@@ -56,7 +56,7 @@ export default function Hero() {
           <motion.div variants={fade} className="flex items-center gap-3">
             <span className="h-px w-10 bg-brand-orange" aria-hidden="true" />
             <span className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-orange">
-              Circuito Luz de Minas
+              Rota Luz de Minas
             </span>
           </motion.div>
 
@@ -109,7 +109,7 @@ export default function Hero() {
               className="group inline-flex items-center gap-2 text-base font-semibold text-white/85 transition hover:text-white"
             >
               <span className="border-b border-white/30 pb-0.5 transition group-hover:border-brand-orange">
-                Conhecer o circuito
+                Conhecer o APP
               </span>
             </a>
           </motion.div>

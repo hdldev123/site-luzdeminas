@@ -6,11 +6,14 @@ import AccessibilityControls from "./AccessibilityControls";
 import { openModal } from "@/lib/modal";
 import { ArrowRightIcon } from "./Icons";
 
-const NAV = [
+type NavItem = { href: string; label: string; external?: boolean };
+
+const NAV: NavItem[] = [
   { href: "#como-funciona", label: "Como funciona" },
   { href: "#funcionalidades", label: "Funcionalidades" },
   { href: "#cidades", label: "Cidades" },
   { href: "#guia-local", label: "Guia Local" },
+  { href: "/historia", label: "História" },
 ];
 
 export default function Header() {
@@ -52,6 +55,9 @@ export default function Header() {
             <a
               key={item.href}
               href={item.href}
+              {...(item.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
               className={`group relative text-sm font-semibold transition hover:text-brand-orange ${
                 scrolled ? "text-ink dark:text-slate-200" : "text-white"
               }`}
@@ -123,10 +129,27 @@ export default function Header() {
               <a
                 key={item.href}
                 href={item.href}
+                {...(item.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 font-semibold text-ink hover:bg-surface dark:text-slate-200 dark:hover:bg-white/5"
+                className="flex items-center justify-between rounded-lg px-3 py-2.5 font-semibold text-ink hover:bg-surface dark:text-slate-200 dark:hover:bg-white/5"
               >
                 {item.label}
+                {item.external && (
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    aria-hidden="true"
+                    className="text-ink/40 dark:text-slate-500"
+                  >
+                    <path d="M7 17 17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )}
               </a>
             ))}
             <button
