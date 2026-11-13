@@ -2,6 +2,22 @@
 
 Registro de mudanças por commit. As mais recentes no topo.
 
+## App nas lojas: links da App Store e do Google Play
+
+- O app **Rotas Luz de Minas** saiu nas duas lojas, então o site deixou o modo
+  pré-lançamento. `siteConfig.links` agora tem as URLs reais da App Store e do
+  Google Play, e `siteConfig.appStoreId` o ID do app na Apple.
+- **Hero** e **CTA final** trocam o botão "Inscreva-se" pelos `StoreButtons`,
+  que viraram links reais (nova aba) com o efeito magnético.
+- **Header** ("Baixar o app") e **Cidades** ("Explorar no app") rolam até
+  `#baixar`.
+- Saíram o popup "Chegando muito em breve", o `SubscribeForm`, a rota
+  `/api/inscrever`, o envio ao Brevo em `leads.ts` e as variáveis
+  `BREVO_API_KEY`, `BREVO_LIST_ID` e `FORMSPREE_ENDPOINT`.
+- `MagneticButton` aceita `href` e renderiza um link externo.
+- SEO: Smart App Banner do iOS (`metadata.itunes`) e `installUrl` com as duas
+  lojas no JSON-LD.
+
 ## Termos e Política em modal de abas (texto real)
 
 - Os links do rodapé agora abrem um único modal com **duas abas** (`LegalModal`):
