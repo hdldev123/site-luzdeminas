@@ -59,8 +59,8 @@ src/
 ### Links das lojas, contatos e parceiros
 Tudo centralizado em **`src/lib/config.ts`**:
 
-- `links.appStore` / `links.googlePlay` → substitua `<<URL_APP_STORE>>` e
-  `<<URL_GOOGLE_PLAY>>` pelos links reais das lojas.
+- `links.appStore` / `links.googlePlay` → links do app nas lojas (já
+  preenchidos com o app publicado).
 - `links.partnerWhatsApp` → número/mensagem do botão **"Seja um parceiro"**.
 - `social` → Instagram, Facebook, YouTube.
 - `legal` → Política de Privacidade, Termos de Uso, Contato.

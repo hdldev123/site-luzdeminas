@@ -6,76 +6,40 @@ Tudo o que muda com frequência está centralizado em **`src/lib/config.ts`**.
 
 | Campo                     | Descrição |
 |---------------------------|-----------|
-| `links.appStore`          | Link da App Store (placeholder `<<URL_APP_STORE>>`). |
-| `links.googlePlay`        | Link do Google Play (placeholder `<<URL_GOOGLE_PLAY>>`). |
+| `links.appStore`          | Link do app na App Store (botões de download). |
+| `links.googlePlay`        | Link do app no Google Play (botões de download). |
+| `appStoreId`              | ID numérico do app na App Store (Smart App Banner do iOS). |
 | `contact.email`           | E-mail exibido no footer (`mailto:`). |
 | `contact.phoneDisplay`    | Telefone para exibição (ex.: `(32) 99999-9999`). |
 | `contact.phoneHref`       | Telefone em E.164 para o link `tel:` (ex.: `+5532999999999`). |
 | `social.instagram`        | Perfil do Instagram (única rede exibida no footer). |
 
-> Itens marcados como `<<...>>` são **placeholders** — troque pelos valores reais.
->
 > **Termos de Uso** e **Política de Privacidade** abrem um modal de abas; o
 > texto fica em `src/components/LegalModal.tsx`. A Política reproduz a versão
 > oficial publicada em `hdldev123.github.io/politica-privacidade` — mantenha os
 > dois em sincronia.
 
-## Formulários
+## Formulário
 
-São **dois formulários independentes**, cada um com sua rota e seu destino:
+O site tem um formulário, o **"Seja um parceiro"** (Guia Local):
 
 | Formulário | Rota | Destino | Fallback local |
 |------------|------|---------|----------------|
-| "Inscreva-se" — e-mail e cidade | `POST /api/inscrever` | `BREVO_API_KEY` → `FORMSPREE_ENDPOINT` | `data/inscricoes.csv` |
 | "Seja um parceiro" (Guia Local) | `POST /api/parceiro` | `FORMSPREE_PARCEIRO_ENDPOINT` | `data/parceiros.csv` |
 
-A inscrição tem **cadeia de destinos**: se `BREVO_API_KEY` estiver definida, vai
-para o Brevo; senão, para o Formspree; sem nenhum dos dois, grava no CSV da raiz
-(pasta `data/` no `.gitignore`) — útil em dev.
-
-### Por que Brevo na lista de inscrição
-
-O Formspree é um **relay de formulário para e-mail**: cada inscrição vira uma
-mensagem na caixa de entrada, e o plano grátis para em **50/mês**. No lançamento
-você teria centenas de e-mails soltos e nenhuma lista para disparar o aviso.
-
-O Brevo é uma plataforma de e-mail marketing: guarda a lista **e** envia a
-campanha. Plano grátis: **até 100 mil contatos** e **300 e-mails/dia**.
-
-> O limite que importa é o de **envio** (300/dia), não o de cadastro. Para
-> avisar 1.500 pessoas, o disparo leva 5 dias — ou paga-se um mês avulso.
-
-O "Seja um parceiro" **continua no Formspree** de propósito: é contato pontual
-de comerciante, não lista de divulgação, e o volume cabe folgado em 50/mês.
-
-### Como configurar o Brevo
-
-1. Crie a conta em [brevo.com](https://www.brevo.com) — o **plano grátis é o
-   padrão**, não precisa selecionar nada. Se cair na tela "Seleção de plano →
-   Checkout", você entrou no funil de upgrade: saia dela e vá para
-   `app.brevo.com`.
-2. Em **Contatos → Configurações → Atributos**, crie o atributo **`CIDADE`**
-   (tipo texto). Sem isso a cidade é descartada em silêncio.
-3. Opcional: crie uma lista em **Contatos → Listas** e anote o **ID** dela.
-4. Gere a chave em **SMTP & API → API Keys**.
-5. Preencha o `.env.local`:
-
-```bash
-BREVO_API_KEY="xkeysib-..."
-BREVO_LIST_ID="2"           # opcional
-```
+Sem o endpoint configurado, os cadastros vão para o CSV da raiz (pasta `data/`
+no `.gitignore`) — útil em dev.
 
 ### Como configurar o Formspree
 
 1. Crie uma conta em [formspree.io](https://formspree.io) e **um formulário**
-   para os parceiros (mais um para a inscrição, se não usar o Brevo).
+   para os parceiros.
 2. Copie o endpoint em **Forms → seu form → Integration** — algo como
    `https://formspree.io/f/abcdwxyz`.
 3. Preencha o `.env.local`:
 
 ```bash
 FORMSPREE_PARCEIRO_ENDPOINT="https://formspree.io/f/wxyzabcd"
-FORMSPREE_ENDPOINT="https://formspree.io/f/abcdwxyz"   # só sem o Brevo
 ```
 
 4. Reinicie o `npm run dev` (variáveis de ambiente só são lidas na inicialização).
@@ -89,11 +53,10 @@ FORMSPREE_ENDPOINT="https://formspree.io/f/abcdwxyz"   # só sem o Brevo
 
 ### Detalhes de implementação
 
-- Lógica comum às duas rotas em **`src/lib/leads.ts`** (validação, rate limit,
+- Lógica da rota em **`src/lib/leads.ts`** (validação, rate limit,
   envio ao Formspree, escrita em CSV).
 - `email` é campo especial do Formspree: vira o **reply-to** da notificação.
-- `_subject` define o assunto ("Nova inscrição — Luz de Minas" / "Novo parceiro
-  — <nome>").
+- `_subject` define o assunto ("Novo parceiro — <nome>").
 - `_gotcha` é um **honeypot** invisível no formulário; se vier preenchido, a
   requisição é descartada silenciosamente (bot).
 - Erros do Formspree são lidos do campo `errors[].message` e logados no servidor;

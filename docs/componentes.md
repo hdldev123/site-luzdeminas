@@ -7,7 +7,7 @@ está em `src/app/page.tsx`.
 
 | # | Componente            | Papel |
 |---|-----------------------|-------|
-| 1 | `Header.tsx`          | Header fixo (transparente → sólido no scroll), navegação, widget de acessibilidade e CTA "Inscreva-se". Client. |
+| 1 | `Header.tsx`          | Header fixo (transparente → sólido no scroll), navegação, widget de acessibilidade e CTA "Baixar o app" (→ `#baixar`). Client. |
 | 2 | `Hero.tsx`            | Hero com degradê verde, headline, CTAs de loja e mockup do app. |
 | 3 | `HowItWorks.tsx`      | "Como funciona" em 3 passos. |
 | 4 | `Features.tsx`        | Grid de funcionalidades com ícones. |
@@ -24,8 +24,8 @@ está em `src/app/page.tsx`.
 
 | Componente                 | Papel |
 |----------------------------|-------|
-| `StoreButtons.tsx`         | Botões App Store / Google Play (Hero e CTA final). |
-| `SubscribeForm.tsx`        | E-mail + cidade do modal "em breve" → `POST /api/inscrever`. Client. |
+| `StoreButtons.tsx`         | Links App Store / Google Play (Hero e CTA final), nova aba. Client. |
+| `MagneticButton.tsx`       | Botão/link com efeito magnético (`href` vira link externo). Client. |
 | `PartnerForm.tsx`          | Cadastro de parceiros (nome, e-mail, telefone, mensagem) → `POST /api/parceiro`. Client. |
 | `AccessibilityControls.tsx`| Widget: tamanho de fonte (A/A+/A++) e alternância claro/escuro. Client. |
 | `Reveal.tsx`               | Anima entrada ao entrar na viewport. Client. |
@@ -33,7 +33,7 @@ está em `src/app/page.tsx`.
 | `Placeholder.tsx`          | Placeholder visual de imagem (trocar por `next/image`). |
 | `Icons.tsx`                | Ícones SVG inline. |
 | `Modal.tsx`                | Diálogo modal acessível e reutilizável. Client. |
-| `ModalsHost.tsx`           | Host único de modais (institucional + "em breve" com captação de e-mail). Client. |
+| `ModalsHost.tsx`           | Host único de modais (parceiro + Termos/Política). Client. |
 | `LegalModal.tsx`           | Modal de abas: Termos de Uso e Política de Privacidade. Client. |
 | `ModalTrigger.tsx`         | Botão que abre um modal (`openModal`). Client. |
 | `Carousel.tsx`             | Carrossel coverflow 3D das telas do app. Client. |
