@@ -33,7 +33,7 @@ Mecanismo desacoplado por evento de janela:
 - `src/components/ModalTrigger.tsx` — botão cliente que chama `openModal`, usado
   dentro de componentes de servidor.
 
-Tipos de modal (`ModalKind`): `terms`, `privacy`, `coming-soon`, `partner`.
+Tipos de modal (`ModalKind`): `terms`, `privacy`, `partner`.
 Os dois primeiros abrem o mesmo `LegalModal` em abas diferentes.
 
 ### Institucional (Termos / Política)
@@ -48,70 +48,22 @@ com **duas abas** (`LegalModal.tsx`). O link clicado define a aba inicial:
   conquistas, Guia Local, conteúdo do usuário). **Não substituem revisão
   jurídica** antes de um uso contratual estrito.
 
-### Popup "em breve" + inscrição (`kind="coming-soon"`)
-Como o app ainda não foi lançado, os botões de download/exploração abrem um
-popup informando que o lançamento será em breve, em vez de levar às lojas:
+### Download nas lojas (`StoreButtons`)
+O app **Rotas Luz de Minas** está publicado na App Store e no Google Play. Os
+links ficam em `siteConfig.links` (`src/lib/config.ts`).
 
-- **"Inscreva-se"** no `Header` (desktop e mobile).
-- **"Baixe na App Store" / "Google Play"** (`StoreButtons`) no Hero e no CTA
-  final.
-- **"Explorar no app"** nos cards de Cidades (`Cities`).
+- **Hero** e **CTA final** (`#baixar`) exibem os botões "Baixe na App Store" e
+  "Disponível no Google Play" (`StoreButtons`), que abrem a loja em nova aba e
+  mantêm o efeito magnético do `MagneticButton` (prop `href`).
+- **"Baixar o app"** no `Header` (desktop e mobile) e **"Explorar no app"** nos
+  cards de Cidades rolam até a seção `#baixar`.
+- No Safari do iOS, a meta `apple-itunes-app` (`metadata.itunes` em
+  `layout.tsx`, com `siteConfig.appStoreId`) exibe o **Smart App Banner** da
+  App Store no topo da página.
+- O JSON-LD `MobileApplication` lista as duas lojas em `installUrl`.
 
-Dentro do popup, no lugar dos botões das lojas, fica o **`SubscribeForm`**:
-campos de **e-mail** e **cidade** (ambos obrigatórios) e o botão "Inscrever-se",
-que envia `POST /api/inscrever`. Estados tratados: validação local, envio,
-sucesso (substitui o formulário pela confirmação) e erro (mensagem em
-`aria-live`).
-
-O campo cidade tem um `<datalist>` sugerindo as cidades do circuito
-(Cataguases, Leopoldina, Piacatuba, Itamarati de Minas), mas **aceita qualquer
-cidade digitada** — turistas de fora são justamente o público-alvo.
-
-### Captação de e-mails (`POST /api/inscrever`)
-Rota em `src/app/api/inscrever/route.ts` (runtime Node). Valida formato e
-tamanho do **e-mail** (normalizado para minúsculas) e da **cidade** (2 a 80
-caracteres), descarta envios com o **honeypot** `_gotcha` preenchido e aplica
-**rate limit** simples em memória (5 envios por IP a cada 10 min → HTTP 429).
-
-> O rate limit é conferido **depois** da validação: só envios válidos contam.
-> Assim quem erra o preenchimento não fica travado, e as tentativas inválidas
-> param antes de qualquer I/O.
-
-As duas rotas compartilham `src/lib/leads.ts` (validação, rate limit por rota,
-envio ao Formspree e escrita em CSV).
-
-Destino, nesta ordem de preferência:
-
-1. **Brevo** — se `BREVO_API_KEY` estiver definida, cadastra o contato via
-   `POST https://api.brevo.com/v3/contacts` com `updateEnabled: true` (reinscrição
-   atualiza em vez de dar erro de duplicado) e a cidade no atributo `CIDADE`.
-   `BREVO_LIST_ID` é opcional. **É o destino recomendado**: sem teto baixo de
-   inscrições e permite disparar a campanha de lançamento para a lista.
-2. **Formspree** — relay de e-mail (`email` vira reply-to, mais `_subject`,
-   `origem` e `data`). Plano grátis limitado a 50 envios/mês.
-3. **Fallback local** — grava em `data/inscricoes.csv`
-   (`email,cidade,origem,data`), ignorando duplicados. `/data` está no
-   `.gitignore`.
-
-> ⚠️ No Brevo, atributos personalizados precisam **existir na conta** antes de
-> serem usados. Se `CIDADE` não estiver criado em Contatos → Configurações →
-> Atributos, o valor é ignorado em silêncio — o contato entra sem a cidade.
-
-O envio ao Brevo faz **uma tentativa extra** em caso de falha de rede, 5xx, 401,
-408 ou 429 (com 400ms de intervalo). O cadastro é idempotente por causa do
-`updateEnabled`, então repetir é seguro. Erros 4xx de dados não são repetidos —
-tentar de novo não mudaria o resultado.
-
-> ⚠️ **Restrição de IP do Brevo.** Em *Segurança → IPs autorizados* é possível
-> bloquear chamadas de IPs não reconhecidos. Com isso ligado, a API responde
-> **401** citando o IP. Em hospedagem serverless o IP de saída é dinâmico, então
-> não há endereço fixo para autorizar: **deixe a restrição desligada** ou
-> hospede em servidor com IP fixo. O retry reduz o estrago, não o elimina.
-
-Configuração passo a passo em [configuracao.md](./configuracao.md).
-
-> ⚠️ Em hospedagem **serverless** (Vercel/Netlify) o disco é efêmero e o
-> fallback em arquivo não persiste — em produção, use o Formspree.
+> O antigo popup "em breve" com pré-cadastro por e-mail (`SubscribeForm` +
+> `POST /api/inscrever` + Brevo) foi removido quando o app chegou às lojas.
 
 ## Footer — contato
 
@@ -124,8 +76,8 @@ O botão na seção Guia Local abre um **modal com formulário de cadastro**
 (`PartnerForm.tsx`) — antes ele levava a um formulário externo em nova aba.
 
 Campos: **nome** do negócio/responsável, **e-mail**, **telefone/WhatsApp**
-(todos obrigatórios) e **mensagem** (opcional, até 2000 caracteres). Mesmo
-padrão do `SubscribeForm`: validação no cliente e no servidor, estados de
+(todos obrigatórios) e **mensagem** (opcional, até 2000 caracteres). Tem
+validação no cliente e no servidor, estados de
 envio/sucesso/erro, feedback em `aria-live` e honeypot anti-spam.
 
 ### `POST /api/parceiro`

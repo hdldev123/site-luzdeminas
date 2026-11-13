@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import AccessibilityControls from "./AccessibilityControls";
-import { openModal } from "@/lib/modal";
 import { ArrowRightIcon } from "./Icons";
 
 type NavItem = { href: string; label: string; external?: boolean };
@@ -80,19 +79,17 @@ export default function Header() {
           >
             <AccessibilityControls />
           </div>
-          <button
-            type="button"
-            onClick={() => openModal("coming-soon")}
-            aria-haspopup="dialog"
+          <a
+            href="#baixar"
             className="group relative hidden items-center gap-2 overflow-hidden rounded-full bg-brand-orange px-5 py-2.5 text-sm font-bold text-white shadow-soft transition hover:bg-brand-orange-dark sm:inline-flex"
           >
             <span
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full"
             />
-            <span className="relative">Inscreva-se</span>
+            <span className="relative">Baixar o app</span>
             <ArrowRightIcon className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-          </button>
+          </a>
 
           <button
             type="button"
@@ -152,17 +149,13 @@ export default function Header() {
                 )}
               </a>
             ))}
-            <button
-              type="button"
-              onClick={() => {
-                setOpen(false);
-                openModal("coming-soon");
-              }}
-              aria-haspopup="dialog"
+            <a
+              href="#baixar"
+              onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-brand-orange px-5 py-3 text-center font-bold text-white"
             >
-              Inscreva-se
-            </button>
+              Baixar o app
+            </a>
             <div className="mt-3 text-ink dark:text-slate-200">
               <AccessibilityControls compact />
             </div>

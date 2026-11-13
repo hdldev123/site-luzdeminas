@@ -1,13 +1,13 @@
 "use client";
 
 import Reveal from "./Reveal";
-import MagneticButton from "./MagneticButton";
-import { openModal } from "@/lib/modal";
-import { MapPinIcon, ArrowRightIcon, CheckIcon } from "./Icons";
+import StoreButtons from "./StoreButtons";
+import { MapPinIcon, CheckIcon } from "./Icons";
 
 /**
  * Fechamento da página: um grande momento editorial com o mesmo material do
- * hero (verde profundo, luz quente, grão) e o CTA de inscrição magnético.
+ * hero (verde profundo, luz quente, grão) e os botões de download das lojas.
+ * O id `baixar` é o destino dos CTAs "Baixar o app" do header e das cidades.
  */
 export default function FinalCTA() {
   return (
@@ -39,29 +39,16 @@ export default function FinalCTA() {
             </h2>
 
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-              Deixe seu e-mail e seja avisado no lançamento — e comece a
-              colecionar marcos, medalhas e memórias por Cataguases, Leopoldina e
-              Piacatuba/Itamarati.
+              Baixe o app e comece agora a colecionar marcos, medalhas e
+              memórias por Cataguases, Leopoldina e Piacatuba/Itamarati.
             </p>
 
             <div className="mt-10 flex justify-center">
-              <MagneticButton
-                onClick={() => openModal("coming-soon")}
-                aria-haspopup="dialog"
-                aria-label="Inscreva-se para o lançamento"
-                className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-brand-orange px-9 py-4 text-lg font-bold text-white shadow-[0_18px_40px_-12px_rgba(255,107,53,0.6)] sm:px-10 sm:py-5"
-              >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full"
-                />
-                <span className="relative">Inscreva-se</span>
-                <ArrowRightIcon className="relative h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </MagneticButton>
+              <StoreButtons variant="light" />
             </div>
 
             <ul className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-white/70">
-              {["Pré-cadastro gratuito", "Chega em iOS e Android"].map((item) => (
+              {["Download gratuito", "Disponível para iOS e Android"].map((item) => (
                 <li key={item} className="flex items-center gap-1.5">
                   <CheckIcon className="h-4 w-4 text-brand-orange" />
                   {item}

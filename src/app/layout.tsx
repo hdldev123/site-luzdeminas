@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
+import { siteConfig } from "@/lib/config";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,6 +43,8 @@ export const metadata: Metadata = {
     "Cândido Portinari",
   ],
   authors: [{ name: "Luz de Minas" }],
+  // Smart App Banner do Safari no iOS: oferece abrir/baixar o app na App Store.
+  itunes: { appId: siteConfig.appStoreId },
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -93,6 +96,7 @@ const jsonLd = {
     "App de turismo histórico e cultural da Zona da Mata mineira. Rotas guiadas, áudio-guia, coleta de marcos por QR Code, conquistas e guia local com cupons.",
   offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" },
   url: SITE_URL,
+  installUrl: [siteConfig.links.appStore, siteConfig.links.googlePlay],
   about:
     "Circuito Luz de Minas — Cataguases, Leopoldina e Piacatuba/Itamarati, berço do modernismo brasileiro.",
 };
