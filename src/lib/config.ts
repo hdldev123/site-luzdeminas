@@ -7,11 +7,15 @@ export const siteConfig = {
   name: "Luz de Minas",
   tagline: "Circuito Luz de Minas",
 
-  // Links das lojas de aplicativos (substitua os placeholders)
+  // Links das lojas de aplicativos (app "Rotas Luz de Minas")
   links: {
-    appStore: "<<URL_APP_STORE>>",
-    googlePlay: "<<URL_GOOGLE_PLAY>>",
+    appStore: "https://apps.apple.com/br/app/rotas-luz-de-minas/id6820334771",
+    googlePlay:
+      "https://play.google.com/store/apps/details?id=com.hdl.rotas&hl=pt_BR",
   },
+
+  // ID numérico do app na App Store — alimenta o Smart App Banner do Safari (iOS)
+  appStoreId: "6820334771",
 
   // Contato exibido no footer (e-mail + telefone)
   contact: {

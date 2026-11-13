@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import SectionHeading from "./SectionHeading";
-import ModalTrigger from "./ModalTrigger";
 import { ArrowRightIcon } from "./Icons";
 import { gsap } from "@/lib/gsapSetup";
 
@@ -207,13 +206,13 @@ export default function Cities() {
                   </p>
 
                   <div data-reveal className="mt-5">
-                    <ModalTrigger
-                      kind="coming-soon"
+                    <a
+                      href="#baixar"
                       className="group/link inline-flex items-center gap-1.5 text-sm font-bold text-brand-green transition hover:gap-2.5 dark:text-brand-leaf"
                     >
                       Explorar no app
                       <ArrowRightIcon className="h-4 w-4 transition group-hover/link:translate-x-1" />
-                    </ModalTrigger>
+                    </a>
                   </div>
                 </div>
               </div>

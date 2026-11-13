@@ -3,9 +3,8 @@
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import HeroCanvas from "./HeroCanvas";
-import MagneticButton from "./MagneticButton";
-import { openModal } from "@/lib/modal";
-import { CheckIcon, ArrowRightIcon } from "./Icons";
+import StoreButtons from "./StoreButtons";
+import { CheckIcon } from "./Icons";
 
 const HEADLINE = "Explore a história, a arquitetura e o modernismo da Zona da Mata";
 const HIGHLIGHT = "modernismo";
@@ -88,21 +87,8 @@ export default function Hero() {
             Itamarati — que cabe no seu bolso.
           </motion.p>
 
-          <motion.div variants={fade} className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
-            <MagneticButton
-              onClick={() => openModal("coming-soon")}
-              aria-haspopup="dialog"
-              aria-label="Inscreva-se para o lançamento"
-              className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-brand-orange px-8 py-4 text-base font-bold text-white shadow-[0_18px_40px_-12px_rgba(255,107,53,0.6)]"
-            >
-              {/* brilho que cruza no hover */}
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full"
-              />
-              <span className="relative">Inscreva-se</span>
-              <ArrowRightIcon className="relative h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </MagneticButton>
+          <motion.div variants={fade} className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-5">
+            <StoreButtons variant="light" />
 
             <a
               href="#como-funciona"
@@ -118,7 +104,7 @@ export default function Hero() {
             variants={fade}
             className="mt-9 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/70"
           >
-            {["Pré-cadastro gratuito", "Chega em iOS e Android"].map((item) => (
+            {["Download gratuito", "Disponível para iOS e Android"].map((item) => (
               <li key={item} className="flex items-center gap-1.5">
                 <CheckIcon className="h-4 w-4 text-brand-orange" />
                 {item}
