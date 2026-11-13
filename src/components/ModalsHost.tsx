@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Modal from "./Modal";
-import SubscribeForm from "./SubscribeForm";
 import PartnerForm from "./PartnerForm";
 import LegalModal from "./LegalModal";
 import { MODAL_EVENT, type ModalKind } from "@/lib/modal";
@@ -28,22 +27,6 @@ export default function ModalsHost() {
 
   return (
     <>
-      {/* App em breve */}
-      <Modal
-        open={kind === "coming-soon"}
-        onClose={close}
-        title="Chegando muito em breve"
-      >
-        <p className="leading-relaxed text-ink/80 dark:text-slate-300">
-          O app <strong>Luz de Minas</strong> está em desenvolvimento e será
-          lançado em breve nas lojas. Enquanto isso, fique de olho — a sua
-          jornada pelo Circuito Luz de Minas está quase pronta para começar!
-        </p>
-        <div className="mt-5 border-t border-black/5 pt-5 dark:border-white/10">
-          <SubscribeForm />
-        </div>
-      </Modal>
-
       {/* Seja um parceiro (Guia Local) */}
       <Modal
         open={kind === "partner"}
